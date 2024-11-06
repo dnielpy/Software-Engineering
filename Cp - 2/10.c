@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include <math.h>
 
-
 int main(){
-
-    float venta1,venta2, venta3, venta4, venta5, promedio = 0, porcentaje = 0, total = 0;
+    float venta1;
+    float venta2;
+    float venta3;
+    float venta4;
+    float venta5;
+    float promedio = 0;
+    float porcentaje = 0.0;  
+    float total = 0;
 
     printf("Escriba el importe de la venta 1: ");
     scanf("%f", &venta1);
@@ -28,5 +33,5 @@ int main(){
     total = 200 + porcentaje;
 
     printf("El vendedor recibe: %.2f", total);
-
 }
+

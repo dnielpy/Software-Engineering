@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 
-
-int main(){
-
-    float longitud, radio_int, radio_ext, volumen;
+int main() {
+    float longitud;
+    float radio_int;
+    float radio_ext;
+    float volumen;
 
     printf("Escribe la longitud: ");
     scanf("%f", &longitud);
@@ -15,7 +16,11 @@ int main(){
     printf("Escribe el radio externo: ");
     scanf("%f", &radio_ext);
 
-    volumen = ((radio_ext * radio_ext) - (radio_int * radio_int)) * 3.1416 * longitud;
 
-    printf("El volumen es: %f", volumen);
+    volumen = 3.1416 * longitud * ((radio_ext * radio_ext) - (radio_int * radio_int));
+
+    printf("El volumen es: %.2f\n", volumen);
+
+    return 0;
 }
+
