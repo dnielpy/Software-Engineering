@@ -8,7 +8,7 @@ int main(void)
 
     while(stop != -1){
         int rangoInf = pedirRangoInferior();
-        int rangoSup = pedirRangoSuperior();
+        int rangoSup = pedirRangoSuperior(rangoInf);
 
         int resultado = sumaEnteros(rangoInf, rangoSup);
 

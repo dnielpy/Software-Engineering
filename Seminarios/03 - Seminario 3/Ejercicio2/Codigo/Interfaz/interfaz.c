@@ -13,13 +13,13 @@ int pedirRangoInferior(){
     return x;
 }
 
-int pedirRangoSuperior(){
+int pedirRangoSuperior(int y){
     int x;
 
     printf("Escriba el rango Superior: ");
 
-    while(scanf("%d", &x) == 0){
-        printf("ERROR: Escriba un n\xa3mero entero: ");
+    while(scanf("%d", &x) == 0 || x <= y){
+        printf("ERROR: Escriba un n\xa3mero entero y mayor al limite inferior: ");
         fflush(stdin);
     }
 
@@ -27,7 +27,7 @@ int pedirRangoSuperior(){
 }
 
 void mostrarResultado(int x){
-    printf("El resultado es %d\n", x);
+    printf("La suma de los n\xa3mero enteros pares en ese intervalo es de: %d\n", x);
 }
 
 int repeat(){

@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-
 int sumaEnteros(int x, int y){
     int result = 0;
 
-    result = x;
-    for(x; x < y; x++){
-        if(esPar(x) && (x+2 <= y)){
-            result += x+2;
+    if(x != y){
+        result = x;
+        for(x; x < y; x++){
+            if(esPar(x) && (x+2 <= y)){
+                result += x+2;
+            }
         }
+    }
+    else if (esPar(x)){
+        result = x;
     }
 
     return result;

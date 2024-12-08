@@ -1,4 +1,4 @@
 int pedirRangoInferior();
-int pedirRangoSuperior();
+int pedirRangoSuperior(int y);
 void mostrarResultado();
 int repeat();

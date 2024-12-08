@@ -1,0 +1,2 @@
+int pedirNumero();
+bool terminar();
