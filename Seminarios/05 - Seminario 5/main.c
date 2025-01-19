@@ -72,7 +72,7 @@ void imprimirProductos(char productos[5][COLUMNAS_PRODUCTOS]){
 //imprimir tabla donde la primera columna sea el listado de productos, la primera fila los nombres de los vendedores, y luego la cantidad de productos vendidos por cada vendedor
 void imprimirTabla(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]){
     int i, j;
-    printf("Productos\t");
+    printf("\t");
     for(i = 0; i < FILAS_VENDEDORES; i++){
         printf("%s\t", vendedores[i]);
     }
