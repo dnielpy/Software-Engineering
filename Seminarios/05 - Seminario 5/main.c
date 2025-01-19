@@ -28,7 +28,6 @@ int chequearNombre(char nombre[], char arreglo[][50]){    //Devuelve -1 si el no
     return encontrado;
 }
 
-
 //funcion que reciba un arreglo de char y lo devuelva todo en minusculas
 void normalizarTexto(char arreglo[]){
     for(int i = 0; i < strlen(arreglo); i++){
@@ -60,6 +59,28 @@ int chequearProductos(char arreglo[][50]){
     return vacio;
 }
 
+//Devuelve las ventas totales de ese producto
+int totalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
+    int total = 0;
+
+    int columna;
+    for(columna = 0; columna < COLUMNAS_SALES; columna++){
+        total += sales[indice][columna];
+    }
+    return total;
+}
+
+//Devuelve las ventas totales de ese vendedor
+int totalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
+    int total = 0;
+
+    int fila;
+    for(fila = 0; fila < FILAS_SALES; fila++){
+        total += sales[fila][indice];
+    }
+    return total;
+}
+
 
 //Interfaz
 void imprimirProductos(char productos[5][COLUMNAS_PRODUCTOS]){
@@ -73,18 +94,23 @@ void imprimirProductos(char productos[5][COLUMNAS_PRODUCTOS]){
 void imprimirTabla(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]){
     int i;
     int j;
+    int totalproducto = 0;
     printf("\t");
     for(i = 0; i < FILAS_VENDEDORES; i++){
-        printf("%s\t\t\t", vendedores[i]);
+        printf("%s\t\t\t", vendedores[i]);      //Imprime los vendedores
     }
     printf("\n");
     for(i = 0; i < FILAS_PRODUCTOS; i++){
-        printf("%s\t", productos[i]);
+        printf("%s\t", productos[i]);           //Imprime los productos
         for(j = 0; j < FILAS_VENDEDORES; j++){
-            printf("%d\t\t\t", sales[j][i]);
+            printf("%d\t\t\t", sales[j][i]);    //Imprime las ventas
         }
+        totalproducto = totalProducto(i, sales);
+        printf("%d", totalproducto);
+        
         printf("\n");
     }
+    // printf("%d", totalVendedor(i, sales));
     printf("\n");
     printf("\n");
     printf("\n");
