@@ -1,0 +1,5 @@
+1.  Función suma_digitos(int numero): Crea una función llamada suma_digitos que reciba un número entero numero como argumento y devuelva la suma de sus dígitos. Por ejemplo, si el número es 123, la función debe devolver 6 (1 + 2 + 3).
+2.  Función imprimir_sumas(int inicio, int fin): Crea una función llamada imprimir_sumas que reciba dos números enteros inicio y fin como argumentos. Esta función debe iterar desde inicio hasta fin (inclusive) y, para cada número en ese rango, calcular la suma de sus dígitos utilizando la función suma_digitos que creaste en el paso 1, y luego imprimir en la consola el número y la suma de sus dígitos.
+3.  Función main(): En la función principal main(), haz lo siguiente:
+    *   Pide al usuario que ingrese dos números enteros: el inicio y el fin del rango.
+    *   Llama a la función imprimir_sumas pasándole los números ingresados por el usuario.

@@ -1,0 +1,7 @@
+Escribe un programa en C que haga lo siguiente:
+
+1.  Función factorial(int n): Crea una función llamada factorial que reciba un número entero n como argumento y devuelva el factorial de ese número. Recuerda que el factorial de un número entero no negativo n se define como el producto de todos los enteros positivos menores o iguales a n. (Ejemplo: 5! = 5 × 4 × 3 × 2 × 1 = 120).
+2.  Función imprimir_factoriales(int inicio, int fin):  Crea una función llamada imprimir_factoriales que reciba dos números enteros inicio y fin como argumentos. Esta función debe iterar desde inicio hasta fin (inclusive) y, para cada número en ese rango, calcular su factorial utilizando la función factorial que creaste en el paso 1, y luego imprimir en la consola el número y su factorial.
+3.  Función main(): En la función principal main(), haz lo siguiente:
+    *   Pide al usuario que ingrese dos números enteros: el inicio y el fin del rango.
+    *   Llama a la función imprimir_factoriales pasándole los números ingresados por el usuario.

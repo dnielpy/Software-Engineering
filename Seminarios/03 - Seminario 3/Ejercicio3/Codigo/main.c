@@ -17,6 +17,6 @@ int main(void)
 
         fin = terminar();
     }
-    printf("Programa finalizado:");
+    printf("Programa finalizado.");
 }
 

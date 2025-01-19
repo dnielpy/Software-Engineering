@@ -4,13 +4,17 @@
 
 int main(void)
 {
-    int stop = 0;
+    int stop = 0;   //Si stop es -1, el programa no se ejecuta mas veces
+
+    int rangoInf;
+    int rangoSup;
+    int resultado;
 
     while(stop != -1){
-        int rangoInf = pedirRangoInferior();
-        int rangoSup = pedirRangoSuperior(rangoInf);
+        rangoInf = pedirRangoInferior();
+        rangoSup = pedirRangoSuperior(rangoInf);
 
-        int resultado = sumaEnteros(rangoInf, rangoSup);
+        resultado = sumaEnteros(rangoInf, rangoSup);
 
         mostrarResultado(resultado);
 

@@ -1,0 +1,5 @@
+1.  Función es_primo(int numero): Crea una función llamada es_primo que reciba un número entero numero como argumento y devuelva 1 (verdadero) si el número es primo, y 0 (falso) si no lo es. Recuerda que un número primo es aquel que solo es divisible por 1 y por sí mismo.
+2.  Función imprimir_primos(int inicio, int fin): Crea una función llamada imprimir_primos que reciba dos números enteros inicio y fin como argumentos. Esta función debe iterar desde inicio hasta fin (inclusive) y, para cada número en ese rango, verificar si es primo utilizando la función es_primo que creaste en el paso 1. Si un número es primo, debe imprimirlo en la consola.
+3.  Función main(): En la función principal main(), haz lo siguiente:
+    *   Pide al usuario que ingrese dos números enteros: el inicio y el fin del rango.
+    *   Llama a la función imprimir_primos pasándole los números ingresados por el usuario.
