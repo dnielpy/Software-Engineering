@@ -1,0 +1,13 @@
+#ifndef DATOS_H
+#define DATOS_H
+
+#define FILAS_VENDEDORES 4
+#define COLUMNAS_VENDEDORES 50
+
+#define FILAS_PRODUCTOS 5
+#define COLUMNAS_PRODUCTOS 50
+
+#define FILAS_SALES 5
+#define COLUMNAS_SALES 4
+
+#endif
