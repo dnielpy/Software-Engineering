@@ -3,4 +3,4 @@
 #include<Datos.h>
 
 
-bool chequearSiTieneElProducto(int vendedor, int producto, sales[FILAS_SALES][COLUMNAS_SALES]);
+bool chequearSiTieneElProducto(int vendedor, int producto, int sales[FILAS_SALES][COLUMNAS_SALES]);

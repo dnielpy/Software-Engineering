@@ -40,7 +40,6 @@ int calcularTotalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
 }
 
 void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]) {
-
     int fila;
     int columna;
 
@@ -51,29 +50,21 @@ void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores
     }
     printf("Total\n");
 
-    for(fila = 0; fila < FILAS_SALES; fila++){
-        printf("%s\t", productos[fila]);              //Imprimir el producto
-        for(columna = 0; columna < COLUMNAS_SALES; columna++){
+    for (fila = 0; fila < FILAS_PRODUCTOS; fila++) {
+        printf("%s\t", productos[fila]);  // Imprimir el producto
+        for (columna = 0; columna < COLUMNAS_SALES; columna++) {
             printf("%d\t", sales[fila][columna]);
         }
-        printf("%d", calcularTotalProducto(fila, sales));
-        printf("\n");
+        printf("%d\n", calcularTotalProducto(fila, sales)); // Mostrar total por producto
     }
-
-
-
-    // // Imprimir productos y ventas
-    // for (i = 0; i < FILAS_PRODUCTOS; i++) {
-    //     int totalProducto = 0;
-    //     printf("%s\t", productos[i]);
-    //     for (j = 0; j < FILAS_VENDEDORES; j++) {
-    //         printf("%d\t", sales[i][j]);
-    //         totalProducto += sales[i][j];
-    //     }
-    //     printf("%d\n", totalProducto);
-    // }
-    // printf("\n");
+    // Mostrar totales de vendedores
+    printf("Total\t");
+    for (columna = 0; columna < FILAS_VENDEDORES; columna++) {
+        printf("%d\t", calcularTotalVendedor(columna, sales));
+    }
+    printf("\n");
 }
+
 
 void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES]){
     char nombre[50];
@@ -123,71 +114,22 @@ void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMN
     printf("Nombre registrado con exito. Nombre: %s\n", productos[producto]);
 }
 
-void pedirVentasMensuales(char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_VENDEDORES][COLUMNAS_PRODUCTOS], int sales[FILAS_SALES][COLUMNAS_SALES]){
-    //Va iterando por cada vendedor, le muestra todos los productos con su indice, el usuario elige que producto añadir y a continuacion que cantidad de ese producto quiere añadir
-    int producto = 0;
-    int cantidad = 0;
+void pedirVentasMensuales(char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS], int sales[FILAS_SALES][COLUMNAS_SALES]) {
+    int cantidad;
+    int vendedor;
+    int producto;
 
-    int vendedor = 0;
-    for(vendedor; vendedor < FILAS_VENDEDORES; vendedor++){
+    for (vendedor = 0; vendedor < FILAS_VENDEDORES; vendedor++) {
         system("cls");
         printf("Vendedor: %s\n", vendedores[vendedor]);
-        imprimirProductos(productos);
-        printf("Ingrese el n\xa3mero del producto que desea agregar: ");
-        while(scanf("%d", &producto) == 0 || producto < 0 || producto > 4){
-            if(chequearS)
-            printf("ERROR: Ingrese un n\xa3mero v\xa0lido: ");                  //Seleccionar producto
-            fflush(stdin);
-        }
 
-        printf("Ingrese la cantidad de %s que desea agregar: ", productos[cantidad]);
-        while(scanf("%d", &cantidad) == 0){
-            printf("ERROR: Ingrese un n\xa3mero v\xa0lido: ");                  //Seleccionar cantidad
-            fflush(stdin);
-        }
-        sales[producto][vendedor] = cantidad;
-        printf("Venta registrada con exito. Vendedor: %s, Producto: %s, Cantidad: %d\n", vendedores[vendedor], productos[producto], sales[producto][vendedor]);
-
-        printf("Desea agregar otro producto?: \n1 - Si\n2 - No \n");
-
-        int opcion;
-        while(scanf("%d", &opcion) == 0 || opcion < 1 || opcion > 2){
-            printf("ERROR: Ingrese un n\xa3mero v\xa0lido: ");                  //Seguir agregando?
-            fflush(stdin);
-        }
-        if(opcion == 1){
-            vendedor--;
+        for (producto = 0; producto < FILAS_PRODUCTOS; producto++) {
+            printf("Ingrese la cantidad de %s que vendi\xa2 %s: ", productos[producto], vendedores[vendedor]);
+            while (scanf("%d", &cantidad) == 0 || cantidad < 0 ) {
+                printf("ERROR: Ingrese una cantidad v\xa0lida (no negativa): ");
+                fflush(stdin);
+            }
+           sales[producto][vendedor] = cantidad;
         }
     }
-
-
-    // int i = 0;
-    // for(i = 0; i < FILAS_VENDEDORES; i++){
-    //     int cantidad = 0;
-    //         system("cls");
-    //         printf("Vendedor: %s\n", vendedores[i]);
-    //         imprimirProductos(productos);
-    //         printf("Ingrese el numero del producto que desea agregar: ");
-    //         while(scanf("%d", &cantidad) == 0 || cantidad < 0 || cantidad > 4){
-    //             printf("ERROR: Ingrese un numero valido: ");
-    //             fflush(stdin);
-    //         }
-    //         printf("Ingrese la cantidad de %s que desea agregar: ", productos[cantidad]);
-    //         int cant = 0;
-    //         while(scanf("%d", &cant) == 0){
-    //             printf("ERROR: Ingrese un numero valido: ");
-    //             fflush(stdin);
-    //         }
-    //         sales[]
-    //         printf("Venta registrada con exito. Vendedor: %s, Producto: %s, Cantidad: %d\n", vendedores[i], productos[cantidad], sales[i][cantidad]);
-    //     printf("Desea agregar otro producto?: \n1 - Si\n2 - No \n");
-    //     int opcion;
-    //     while(scanf("%d", &opcion) == 0 || opcion < 1 || opcion > 2){
-    //         printf("ERROR: Ingrese un numero valido: ");
-    //         fflush(stdin);
-    //     }
-    //     if(opcion == 1){
-    //         i--;
-    //     }
-    // }
 }

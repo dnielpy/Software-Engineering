@@ -6,16 +6,15 @@
 #include <Datos.h>
 
 
-int chequearNombre(char nombre[], char arreglo[][50]){    //Devuelve -1 si el nombre no se encuentra, 1 si el nombre se encuentra
+int chequearNombre(char nombre[], char arreglo[][50], int filas){    //Devuelve -1 si el nombre no se encuentra, 1 si el nombre se encuentra
     int encontrado = -1;
 
     int i;
-    for(i = 0; i < FILAS_VENDEDORES && encontrado == -1; i++){
+    for(i = 0; i < filas && encontrado == -1; i++){
         if(strcmp(arreglo[i], nombre) == 0){
             encontrado = 1;
         }
     }
-
     return encontrado;
 }
 
@@ -53,7 +52,7 @@ int chequearProductos(char arreglo[][50]){
     return vacio;
 }
 
-bool chequearSiTieneElProducto(int vendedor, int producto, sales[FILAS_SALES][COLUMNAS_SALES]){
+bool chequearSiTieneElProducto(int vendedor, int producto, int sales[FILAS_SALES][COLUMNAS_SALES]){
 
     bool response = false;
 
