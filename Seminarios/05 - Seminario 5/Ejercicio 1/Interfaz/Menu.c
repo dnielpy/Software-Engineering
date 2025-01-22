@@ -58,7 +58,7 @@ void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDOR
                         system("cls");
                     }
                     else{
-                        printf("Los datos ya han sido llenados\n");
+                        printf("ERROR: Los datos ya han sido llenados\n");
                     }
                 }
                 else{

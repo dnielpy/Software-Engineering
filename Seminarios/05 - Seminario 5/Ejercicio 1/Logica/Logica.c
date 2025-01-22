@@ -17,7 +17,6 @@ bool chequearVendedores(char arreglo[][50]){
             vacio = false;
         }
     }
-
     return vacio;
 }
 

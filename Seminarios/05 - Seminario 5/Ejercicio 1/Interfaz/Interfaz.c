@@ -37,8 +37,8 @@ void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMN
 
     do {
         printf("Ingrese el nombre del producto %d: ", producto+1);
-        while(scanf("%s", nombre) == 0){
-            printf("ERROR: Ingrese un nombre x\a0lido: ");
+        while(scanf("%s", nombre) == 0 || chequearNombreValido(nombre) == false){
+            printf("ERROR: Ingrese un nombre v\xa0lido: ");
             fflush(stdin);
         }
         normalizarTexto(nombre);
@@ -67,8 +67,8 @@ void pedirVentasMensuales(char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES]
 
         for (producto = 0; producto < FILAS_PRODUCTOS; producto++) {
             printf("Ingrese la cantidad de %s que vendi\xa2 %s: ", productos[producto], vendedores[vendedor]);
-            while (scanf("%d", &cantidad) == 0 || cantidad < 0 ) {
-                printf("ERROR: Ingrese una cantidad v\xa0lida (no negativa): ");
+            while (scanf("%d", &cantidad) == 0 || cantidad < 0 || cantidad > 9999) {
+                printf("ERROR: Ingrese una cantidad v\xa0lida (no negativa y menor a 10000): ");
                 fflush(stdin);
             }
             sales[producto][vendedor] = cantidad;
@@ -117,7 +117,6 @@ void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores
         ventasVendedores[columna] = totalV;
         printf("%d\t", totalV);
     }
-    // printf("\n\n-------------------------------------------------------------");
     printf("\n\n");
 }
 
