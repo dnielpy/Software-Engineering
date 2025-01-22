@@ -9,6 +9,7 @@ bool chequearProductos(char arreglo[][50]);
 bool chequearSiTieneElProducto(int vendedor, int producto, int sales[FILAS_SALES][COLUMNAS_SALES]);
 bool chequearNombre(char nombre[], char arreglo[][50], int filas);
 bool chequearDatosLlenados(int sales[FILAS_SALES][COLUMNAS_SALES]);
+bool chequearNombreValido(char nombre[50]);
 
 // Funciones de manipulación de texto
 void normalizarTexto(char arreglo[]);

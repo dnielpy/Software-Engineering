@@ -6,8 +6,7 @@
 #include <Datos.h>
 
 
-//**Chequear cosas**
-
+//*** CHEQUEAR COSAS ***
 //Devuelve true si el arreglo esta vacio
 bool chequearVendedores(char arreglo[][50]){
     bool vacio = true;
@@ -75,6 +74,25 @@ bool chequearDatosLlenados(int sales[FILAS_SALES][COLUMNAS_SALES]){
     return llenado;
 }
 
+//Compara las letras del nombre con el alfabeeto. En caso de que alguna letra del nombre no este en el alfabeto, devuelve false
+bool chequearNombreValido(char nombre[50]){
+    bool response = true;
+
+    if (nombre == NULL) {
+        response = false; // El nombre es nulo
+    }
+
+
+    int i;
+    for (i = 0; nombre[i] != '\0'; i++) {
+        if (!isalpha(nombre[i]) && !isspace(nombre[i])) {
+           response = false;
+        }
+    }
+
+    return response; 
+}
+
 //funcion que reciba un arreglo de char y lo devuelva todo en minusculas
 void normalizarTexto(char arreglo[]){
     int i;
@@ -83,6 +101,7 @@ void normalizarTexto(char arreglo[]){
     }
 }
 
+//*** CALCULOS ***
 //Devuelve las ventas totales de un producto
 int calcularTotalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
     int ventas = 0;

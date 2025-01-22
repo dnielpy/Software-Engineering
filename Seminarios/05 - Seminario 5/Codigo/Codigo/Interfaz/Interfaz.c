@@ -13,7 +13,7 @@ void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLU
 
     do {
         printf("Ingrese el nombre del vendedor %d: ", vendedor+1);
-        while(scanf("%s", nombre) == 0){
+        while(scanf("%s", nombre) == 0 || chequearNombreValido(nombre) == false){
             printf("ERROR: Ingrese un nombre valido: ");
             fflush(stdin);
         }
