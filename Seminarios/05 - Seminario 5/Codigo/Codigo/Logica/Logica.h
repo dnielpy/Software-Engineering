@@ -17,3 +17,9 @@ void normalizarTexto(char arreglo[]);
 int totalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]);
 int totalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]);
 
+//Funciones de reporte
+int vendedorConMasVentas(int sales[FILAS_SALES][COLUMNAS_SALES]);
+int mayorValorDeVentas(int sales[FILAS_SALES][COLUMNAS_SALES]);
+int productoConMasVentas(int sales[FILAS_SALES][COLUMNAS_SALES]);
+
+int calcularTotalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]);

@@ -10,4 +10,7 @@
 #define FILAS_SALES 5
 #define COLUMNAS_SALES 4
 
+#define SIZE_VENTAS_PRODUCTOS 5
+#define SIZE_VENTAS_VENDEDORES 4
+
 #endif

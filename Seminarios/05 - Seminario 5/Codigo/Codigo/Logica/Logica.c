@@ -110,3 +110,56 @@ int calcularTotalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
     return ventas;
 }
 
+//Devuelve el indice en el arreglo Vendedores del vendedor con mas ventas
+int vendedorConMasVentas(int ventasVendedores[SIZE_VENTAS_VENDEDORES]){
+    //Inicializamos en 0 antes de comparar
+    int contador = ventasVendedores[0];
+    int indice = 0;
+
+    int i = 0;
+    for(i = 0; i < SIZE_VENTAS_VENDEDORES; i++){
+        if(ventasVendedores[i] > contador){
+        contador = ventasVendedores[i];
+        indice = i;
+       }
+    }
+    return indice;
+}
+
+//Devuelve el indice en el arreglo Productos del producto con mas ventas
+int productoConMasVentas(int ventasProductos[SIZE_VENTAS_PRODUCTOS]){
+    //Inicializamos en 0 antes de comparar
+    int contador = ventasProductos[0];
+    int indice = 0;
+
+    int i = 0;
+    for(i = 0; i < SIZE_VENTAS_PRODUCTOS; i++){
+        if(ventasProductos[i] > contador){
+        contador = ventasProductos[i];
+        indice = i;
+       }
+    }
+    return indice;
+}
+
+//Devuelve el mayor valor de ventas del vendedor solicitado (columna)
+int mayorValorDeVentas(int sales[FILAS_SALES][COLUMNAS_SALES]){
+    int valor = sales[0][0];
+
+    int i;
+    int j;
+    for(i = 0; i < FILAS_SALES; i++){
+        for(j = 0; j < COLUMNAS_SALES; j++){
+            if(sales[i][j] > valor){
+                valor = sales[i][j];
+            }
+        }
+    }
+    return valor;
+}
+
+
+
+
+
+

@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <Datos.h>
 #include <Logica/Logica.h>
+#include <Interfaz/Interfaz.h>
 
-void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]){
+void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS], int ventasVendedores[SIZE_VENTAS_VENDEDORES], int ventasProductos[SIZE_VENTAS_PRODUCTOS]){
     int opcion;
 
     do {
@@ -69,7 +70,8 @@ void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDOR
 
             case 4:
                 system("cls");
-                imprimirTablaVentas(sales, vendedores, productos);
+                imprimirTablaVentas(sales, vendedores, productos, ventasVendedores, ventasProductos);
+                reportes(sales, vendedores, productos);
                 break;
                 }
     } while (opcion != 5);
