@@ -6,47 +6,28 @@
 #include <Datos.h>
 
 
-int chequearNombre(char nombre[], char arreglo[][50], int filas){    //Devuelve -1 si el nombre no se encuentra, 1 si el nombre se encuentra
-    int encontrado = -1;
-
-    int i;
-    for(i = 0; i < filas && encontrado == -1; i++){
-        if(strcmp(arreglo[i], nombre) == 0){
-            encontrado = 1;
-        }
-    }
-    return encontrado;
-}
-
-//funcion que reciba un arreglo de char y lo devuelva todo en minusculas
-void normalizarTexto(char arreglo[]){
-    int i;
-    for(i = 0; i < strlen(arreglo); i++){
-        arreglo[i] = tolower(arreglo[i]);
-    }
-}
-
+//**Chequear cosas**
 //chequear si el arreglo esta vacio
-int chequearVendedores(char arreglo[][50]){
-    int vacio = 1;
+bool chequearVendedores(char arreglo[][50]){
+    bool vacio = true;
 
     int i;
-    for(i = 0; i < FILAS_VENDEDORES && vacio == 1; i++){
+    for(i = 0; i < FILAS_VENDEDORES && vacio == true; i++){
         if(strcmp(arreglo[i], "") != 0){
-            vacio = -1;
+            vacio = false;
         }
     }
 
     return vacio;
 }
 
-int chequearProductos(char arreglo[][50]){
-    int vacio = 1;
+bool chequearProductos(char arreglo[][50]){
+    int vacio = true;
 
     int i;
-    for(i = 0; i < FILAS_PRODUCTOS && vacio == 1; i++){
+    for(i = 0; i < FILAS_PRODUCTOS && vacio == true; i++){
         if(strcmp(arreglo[i], "") != 0){
-            vacio = -1;
+            vacio = false;
         }
     }
     return vacio;
@@ -62,6 +43,43 @@ bool chequearSiTieneElProducto(int vendedor, int producto, int sales[FILAS_SALES
 
     return response;
 }
+
+bool chequearNombre(char nombre[], char arreglo[][50], int filas){
+    bool encontrado = false;
+
+    int i;
+    for(i = 0; i < filas && encontrado == false; i++){
+        if(strcmp(arreglo[i], nombre) == 0){
+            encontrado = true;
+        }
+    }
+    return encontrado;
+}
+
+bool chequearDatosLlenados(int sales[FILAS_SALES][COLUMNAS_SALES]){
+    bool llenado = false;
+
+    int i;
+    int j;
+    for(i = 0; i < FILAS_SALES; i++){
+        for(j = 0; j < COLUMNAS_SALES; j++){
+            if(sales[i][j] != 0){
+                llenado = true;
+            }
+        }
+    }
+
+    return llenado;
+}
+
+//funcion que reciba un arreglo de char y lo devuelva todo en minusculas
+void normalizarTexto(char arreglo[]){
+    int i;
+    for(i = 0; i < strlen(arreglo); i++){
+        arreglo[i] = tolower(arreglo[i]);
+    }
+}
+
 
 //Devuelve las ventas totales de ese producto
 int totalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){

@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <Datos.h>
+#include <Logica/Logica.h>
 
 void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]){
     int opcion;
@@ -50,8 +51,14 @@ void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDOR
                 break;
             case 3:
                 system("cls");
-                pedirVentasMensuales(vendedores, productos, sales);
-                system("cls");
+                if(chequearDatosLlenados(sales) == true){
+                    pedirVentasMensuales(vendedores, productos, sales);
+                    system("cls");
+                }
+                else{
+                    printf("ERROR: Los datos ya han sido llenados.");
+                    printf("\n");
+                }
                 break;
 
 

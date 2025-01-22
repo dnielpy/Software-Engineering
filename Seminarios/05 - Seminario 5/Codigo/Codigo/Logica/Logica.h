@@ -4,3 +4,4 @@
 
 
 bool chequearSiTieneElProducto(int vendedor, int producto, int sales[FILAS_SALES][COLUMNAS_SALES]);
+bool chequearDatosLlenados(int sales[FILAS_SALES][COLUMNAS_SALES]);

@@ -6,6 +6,7 @@
 #include <Datos.h>
 #include <Logica/Logica.h>
 
+//Imprime la lista de productos
 void imprimirProductos(char productos[5][COLUMNAS_PRODUCTOS]){
     int i;
     for (i = 0; i < FILAS_PRODUCTOS; i++) {
@@ -68,7 +69,7 @@ void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores
 
 void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES]){
     char nombre[50];
-    int encontrado = 1;
+    int encontrado = false;
 
     do {
         printf("Ingrese el nombre del vendedor %d: ", vendedor+1);
@@ -79,7 +80,7 @@ void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLU
         normalizarTexto(nombre);
         encontrado = chequearNombre(nombre, vendedores);
 
-        if(encontrado == 1){
+        if(encontrado == true){
             printf("ERROR: El nombre ya se encuentra registrado. Ingrese otro nombre.\n");
         }
 
@@ -92,7 +93,7 @@ void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLU
 
 void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]){
     char nombre[20];
-    int encontrado = 1;
+    bool encontrado = false;
 
     do {
         printf("Ingrese el nombre del producto %d: ", producto+1);
@@ -101,13 +102,13 @@ void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMN
             fflush(stdin);
         }
         normalizarTexto(nombre);
-        encontrado = chequearNombre(nombre, productos);
+        encontrado = chequearNombre(nombre, productos, FILAS_PRODUCTOS); // Pasamos el tamaño del arreglo
 
-        if(encontrado == 1){
+        if(encontrado){
             printf("ERROR: El nombre ya se encuentra registrado. Ingrese otro nombre.\n");
         }
 
-    } while (encontrado == 1);
+    } while (encontrado);
 
     strcpy(productos[producto], nombre);
 
