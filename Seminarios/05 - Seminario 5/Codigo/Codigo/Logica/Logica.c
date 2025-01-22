@@ -89,22 +89,24 @@ int calcularTotalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
 
     int columna;
 
-    for(columna = 0; columna < FILAS_SALES; columna++){
+    for(columna = 0; columna < COLUMNAS_SALES; columna++){
         ventas += sales[indice][columna];
     }
 
     return ventas;
 }
 
-//Devuelve las ventas totales de ese vendedor
-int totalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
-    int total = 0;
 
-    int fila;
-    for(fila = 0; fila < FILAS_SALES; fila++){
-        total += sales[fila][indice];
+//Devuelve las ventas totales de un vendedor
+int calcularTotalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
+    int ventas = 0;
+
+    int filas;
+
+    for(filas = 0; filas < FILAS_SALES; filas++){
+        ventas += sales[filas][indice];
     }
-    return total;
-}
 
+    return ventas;
+}
 

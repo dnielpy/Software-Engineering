@@ -14,18 +14,6 @@ void imprimirProductos(char productos[5][COLUMNAS_PRODUCTOS]){
   }
 }
 
-//Devuelve las ventas totales de un vendedor
-int calcularTotalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
-    int ventas = 0;
-
-    int filas;
-
-    for(filas = 0; filas < FILAS_SALES; filas++){
-        ventas += sales[filas][indice];
-    }
-
-    return ventas;
-}
 
 void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]) {
     int fila;
@@ -47,10 +35,10 @@ void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores
     }
     // Mostrar totales de vendedores
     printf("Total\t");
-    for (columna = 0; columna < FILAS_SALES; columna++) {
+    for (columna = 0; columna < FILAS_VENDEDORES; columna++) {
         printf("%d\t", calcularTotalVendedor(columna, sales));
     }
-    printf("\n");
+    printf("\n\n");
 }
 
 
