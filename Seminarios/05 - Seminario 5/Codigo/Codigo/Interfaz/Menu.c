@@ -51,12 +51,17 @@ void menu(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDOR
                 break;
             case 3:
                 system("cls");
-                if(chequearDatosLlenados(sales) == true){
-                    pedirVentasMensuales(vendedores, productos, sales);
-                    system("cls");
+                if(chequearProductos(productos) == false && chequearVendedores(vendedores) == false){
+                    if(chequearDatosLlenados(sales) == false){
+                        pedirVentasMensuales(vendedores, productos, sales);
+                        system("cls");
+                    }
+                    else{
+                        printf("Los datos ya han sido llenados\n");
+                    }
                 }
                 else{
-                    printf("ERROR: Los datos ya han sido llenados.");
+                    printf("ERROR: Los nombres de los vendedores y de los productos aun no han sido llenados");
                     printf("\n");
                 }
                 break;

@@ -27,19 +27,6 @@ int calcularTotalVendedor(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
     return ventas;
 }
 
-//Devuelve las ventas totales de un producto
-int calcularTotalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
-    int ventas = 0;
-
-    int columna;
-
-    for(columna = 0; columna < FILAS_SALES; columna++){
-        ventas += sales[indice][columna];
-    }
-
-    return ventas;
-}
-
 void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]) {
     int fila;
     int columna;
@@ -60,7 +47,7 @@ void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores
     }
     // Mostrar totales de vendedores
     printf("Total\t");
-    for (columna = 0; columna < FILAS_VENDEDORES; columna++) {
+    for (columna = 0; columna < FILAS_SALES; columna++) {
         printf("%d\t", calcularTotalVendedor(columna, sales));
     }
     printf("\n");
@@ -78,7 +65,7 @@ void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLU
             fflush(stdin);
         }
         normalizarTexto(nombre);
-        encontrado = chequearNombre(nombre, vendedores);
+        encontrado = chequearNombre(nombre, vendedores, FILAS_VENDEDORES);
 
         if(encontrado == true){
             printf("ERROR: El nombre ya se encuentra registrado. Ingrese otro nombre.\n");

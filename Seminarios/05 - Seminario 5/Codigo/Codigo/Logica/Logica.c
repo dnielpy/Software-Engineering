@@ -7,7 +7,8 @@
 
 
 //**Chequear cosas**
-//chequear si el arreglo esta vacio
+
+//Devuelve true si el arreglo esta vacio
 bool chequearVendedores(char arreglo[][50]){
     bool vacio = true;
 
@@ -21,6 +22,7 @@ bool chequearVendedores(char arreglo[][50]){
     return vacio;
 }
 
+//Devuelve true si el arreglo esta vacio
 bool chequearProductos(char arreglo[][50]){
     int vacio = true;
 
@@ -56,6 +58,7 @@ bool chequearNombre(char nombre[], char arreglo[][50], int filas){
     return encontrado;
 }
 
+//Devuelve true si ya llenaron las ventas
 bool chequearDatosLlenados(int sales[FILAS_SALES][COLUMNAS_SALES]){
     bool llenado = false;
 
@@ -80,16 +83,17 @@ void normalizarTexto(char arreglo[]){
     }
 }
 
-
-//Devuelve las ventas totales de ese producto
-int totalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
-    int total = 0;
+//Devuelve las ventas totales de un producto
+int calcularTotalProducto(int indice, int sales[FILAS_SALES][COLUMNAS_SALES]){
+    int ventas = 0;
 
     int columna;
-    for(columna = 0; columna < COLUMNAS_SALES; columna++){
-        total += sales[indice][columna];
+
+    for(columna = 0; columna < FILAS_SALES; columna++){
+        ventas += sales[indice][columna];
     }
-    return total;
+
+    return ventas;
 }
 
 //Devuelve las ventas totales de ese vendedor
