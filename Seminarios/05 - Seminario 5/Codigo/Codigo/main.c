@@ -39,8 +39,6 @@ int main(void)
     // };
 
 
-
-
     //Almacenan las ventas totales de cada cosa
     int ventasVendedores[SIZE_VENTAS_VENDEDORES];
     int ventasProductos[SIZE_VENTAS_PRODUCTOS];

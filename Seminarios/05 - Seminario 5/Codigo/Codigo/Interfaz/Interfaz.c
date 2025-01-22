@@ -14,7 +14,7 @@ void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLU
     do {
         printf("Ingrese el nombre del vendedor %d: ", vendedor+1);
         while(scanf("%s", nombre) == 0 || chequearNombreValido(nombre) == false){
-            printf("ERROR: Ingrese un nombre valido: ");
+            printf("ERROR: Ingrese un nombre v\xa0lido: ");
             fflush(stdin);
         }
         normalizarTexto(nombre);
@@ -28,7 +28,7 @@ void ingresarNombreVendedor(int vendedor, char vendedores[FILAS_VENDEDORES][COLU
 
     strcpy(vendedores[vendedor], nombre);
 
-    printf("Nombre registrado con exito. Nombre: %s\n", vendedores[vendedor]);
+    printf("Nombre registrado con \xa82xito. Nombre: %s\n", vendedores[vendedor]);
 }
 
 void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS]){
@@ -38,7 +38,7 @@ void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMN
     do {
         printf("Ingrese el nombre del producto %d: ", producto+1);
         while(scanf("%s", nombre) == 0){
-            printf("ERROR: Ingrese un nombre valido: ");
+            printf("ERROR: Ingrese un nombre x\a0lido: ");
             fflush(stdin);
         }
         normalizarTexto(nombre);
@@ -52,7 +52,7 @@ void ingresarNombreProducto(int producto, char productos[FILAS_PRODUCTOS][COLUMN
 
     strcpy(productos[producto], nombre);
 
-    printf("Nombre registrado con exito. Nombre: %s\n", productos[producto]);
+    printf("Nombre registrado con \xa82xito. Nombre: %s\n", productos[producto]);
 }
 
 void pedirVentasMensuales(char vendedores[FILAS_VENDEDORES][COLUMNAS_VENDEDORES], char productos[FILAS_PRODUCTOS][COLUMNAS_PRODUCTOS], int sales[FILAS_SALES][COLUMNAS_SALES]) {
@@ -117,7 +117,7 @@ void imprimirTablaVentas(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores
         ventasVendedores[columna] = totalV;
         printf("%d\t", totalV);
     }
-    printf("\n\n-------------------------------------------------------------");
+    // printf("\n\n-------------------------------------------------------------");
     printf("\n\n");
 }
 
@@ -134,9 +134,9 @@ void reportes(int sales[FILAS_SALES][COLUMNAS_SALES], char vendedores[FILAS_VEND
     strcpy(producto, productos[indiceProducto]);
     int columnaProductoMasVendido;
 
-    printf("\n\nVendedor Con Mas Ventas: %s", vendedor);
+    printf("\n\nVendedor Con M\xa0s Ventas: %s", vendedor);
     printf("\nMayor Valor De Ventas: %d", mayorValorDeVentas(sales));
-    printf("\nProducto Con Mas Ventas: %s Con Un Valor De: %d\n\n", producto, ventasProductos[indiceProducto]);
+    printf("\nProducto Con M\xa0s Ventas: %s Con Un Valor De: %d\n\n", producto, ventasProductos[indiceProducto]);
 
     printf("--------------------------------------------------------------\n");
 }
