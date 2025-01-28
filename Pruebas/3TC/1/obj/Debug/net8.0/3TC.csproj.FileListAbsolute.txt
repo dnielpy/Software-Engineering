@@ -1,0 +1,15 @@
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.AssemblyInfoInputs.cache
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.AssemblyInfo.cs
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.csproj.CoreCompileInputs.cache
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.sourcelink.json
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\bin\Debug\net8.0\3TC.exe
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\bin\Debug\net8.0\3TC.deps.json
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\bin\Debug\net8.0\3TC.runtimeconfig.json
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\bin\Debug\net8.0\3TC.dll
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\bin\Debug\net8.0\3TC.pdb
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.dll
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\refint\3TC.dll
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.pdb
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\3TC.genruntimeconfig.cache
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\obj\Debug\net8.0\ref\3TC.dll

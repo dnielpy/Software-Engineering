@@ -1,0 +1,15 @@
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.AssemblyInfoInputs.cache
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.AssemblyInfo.cs
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.csproj.CoreCompileInputs.cache
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.sourcelink.json
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\bin\Debug\net8.0\Island Perimeter.exe
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\bin\Debug\net8.0\Island Perimeter.deps.json
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\bin\Debug\net8.0\Island Perimeter.runtimeconfig.json
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\bin\Debug\net8.0\Island Perimeter.dll
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\bin\Debug\net8.0\Island Perimeter.pdb
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.dll
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\refint\Island Perimeter.dll
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.pdb
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\Island Perimeter.genruntimeconfig.cache
+C:\Users\Dnielpy\Documents\Software-Engineering\Pruebas\3TC\Island Perimeter\obj\Debug\net8.0\ref\Island Perimeter.dll
