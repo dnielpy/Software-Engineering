@@ -1,12 +1,35 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "Compilar con Qt (C)",
             "type": "shell",
-            "command": "dotnet run"
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Ejecutar",
+            "type": "shell",
+             "command": "${fileDirname}/${fileBasenameNoExtension}", // Ejecuta el archivo compilado
+             "dependsOn": [
+              "Compilar con Qt (C)"
+             ],
+             "group": {
+                "kind": "test",
+                 "isDefault": true
+             }
         }
     ]
 }

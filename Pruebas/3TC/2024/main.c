@@ -60,8 +60,6 @@ int countPrimes(int n) {
 */
 
 
-
-
 int main() {
 
     int y = 10;
