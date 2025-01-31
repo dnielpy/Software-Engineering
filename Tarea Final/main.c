@@ -1,161 +1,110 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+
+
     
-//Logica
-int checkCapacity(int arreglo[], int size){
-    int counter = 0;
 
-    int i = 0;
-    for(i; i < size; i++){
-        if(arreglo[i] == 0){
-            counter++;
-        }
-    }
-
-    return counter;
-}
 
 //Logica
-int checkSmokingCapacity(int arreglo[], int size){
-    int counter = 0;
-
-    int i = 0;
-    for(i; i < 5; i++){
-        if(arreglo[i] == 0){
-            counter++;
-        }
-    }
-
-    return counter;
-}
-
-int checkNonSmokingCapacity(int arreglo[], int size){
-    int counter = 0;
-
-    int i = 5;
-    for(i; i < 10; i++){
-        if(arreglo[i] == 0){
-            counter++;
-        }
-    }
-
-    return counter;
-}
-
-//Insertar pasajero 
-bool llenarAsientoFumador(int asientos[], int size){
-    bool llenado = false;
-
-    int i = 0;
-    for(i; i < 5 && llenado == false; i++){
-        if(asientos[i] == 0){
-            asientos[i] = 1;
-            llenado = true;
-        }
-    }
-
-    return llenado;
-}
-
-bool llenarAsientoNoFumador(int asientos[], int size){
-    bool llenado = false;
-
-    int i = 5;
-    for(i; i < 10 && llenado == false; i++){
-        if(asientos[i] == 0){
-            asientos[i] = 1;
-            llenado = true;
-        }
-    }
-
-    return llenado;
-}
 
 
 //Interfaz
+void ingresarDatos(struct Provincia provincias[], int cantidadProvincias) {
+    int vacunados;
+    int vacunar;
+    int cantidadDeAlergicos;
+    int alergicosID[1000]; 
 
-bool seguirLlenando(int vacios){
-    int opt = 0;
-    bool response = false;
-
-    printf("El avion aun tiene %d asientos vacios. Seleccione 1 para llenarlos, 2 para dejarlos vacios: ", vacios);
-    while(scanf("%d", &opt) == 0 || opt < 1 || opt > 2){
-        printf("ERROR: Por favor escriba 1 o 2: ");
-        fflush(stdin);
-    }
-
-    if(opt == 1){
-        response = true;
-    }
-
-    return response;
-}
-
-int selectOption(){
-    int opt = 0;
-    
-    printf("Escriba 1 para Si o 2 para NO");
-    printf("Please type 2 for nonsmoking");
-
-    while(scanf("%d", &opt) == 0 || opt < 1 || opt > 2){
-        printf("ERROR: Please type 1 or 2: ");
-        fflush(stdin);
-    }
-    return opt;
-}
-
-int menu(int asientos[], int size){
-    int opt = 0;
-
-    int i = 0;
-    for(i; i < size; i++){
-
-        printf("Please type 1 for smoking");
-        printf("Please type 2 for nonsmoking");
-
-        while(scanf("%d", &opt) == 0 || opt < 1 || opt > 2){
-            printf("ERROR: Please type 1 or 2: ");
+    int i;
+    for(i = 0; i < cantidadProvincias; i++){
+        printf("Provincia: %s\n", provincias[i].nombre);
+        //Inicializar Vacunados
+        printf("Ingrese la cantidad de vacunados: ");
+        while(scanf("%d", &vacunados) == 0){
+            printf("Ingrese un numero valido: ");
             fflush(stdin);
         }
+        provincias[i].vacunados = vacunados;
 
-        if(opt == 1){
-            if(checkSmokingCapacity(asientos, size) > 0){
-                llenarAsientoFumador(asientos, size);
-            }
-            else{
-                printf("Los asientos de fumador ya estan llenos. Desea sentarse en un asiento de No Fumador? :");
-                int opcion = selectOption();
-                if(opcion == 1 && checkNonSmokingCapacity(asientos, size) > 0){
-                    llenarAsientoNoFumador(asientos, size);
-                }
-            }
-            
+        //Inicializar Vacunar
+        printf("Ingrese la cantidad de personas a vacunar: ");
+        while(scanf("%d", &vacunar) == 0){
+            printf("Ingrese un numero valido: ");
+            fflush(stdin);
         }
+        provincias[i].vacunar = vacunar;
 
-        if(opt == 2){
-            if(checkNonSmokingCapacity(asientos, size) > 0){
-                llenarAsientoNoFumador(asientos, size);
+        //Inicializar Alergicos
+        printf("Ingrese la cantidad de alergicos: ");
+        while(scanf("%d", &cantidadDeAlergicos) == 0){
+            printf("Ingrese un numero valido: ");
+            fflush(stdin);
+        }
+        provincias[i].cantidadDeAlergicos = cantidadDeAlergicos;
+
+        int j;
+        for(j = 0; j < cantidadDeAlergicos; j++){
+            printf("Ingrese el ID del alergico: ");
+            while(scanf("%d", &alergicosID[j]) == 0){
+                printf("Ingrese un numero valido: ");
+                fflush(stdin);
             }
-            else{
-                printf("Los asientos de no fumador ya estan llenos. Desea sentarse en un asiento de Fumador? :");
-                int opcion = selectOption();
-                if(opcion == 1 && checkSmokingCapacity(asientos, size) > 0){
-                    llenarAsientoFumador(asientos, size);
-                }
-            }
-            
+            provincias[i].alergicosID[j] = alergicosID[j];
         }
     }
-    return opt;
+}
+
+void ingresarDatosPrueba(struct Provincia provincias[], int cantidadProvincias) {
+    for(int i = 0; i < cantidadProvincias; i++) {
+        int cantidadDeAlergicos = 10 + i;
+
+        sprintf(provincias[i].nombre, "Provincia %d", i + 1);
+
+        provincias[i].vacunados = 1000 + i * 100;
+
+        provincias[i].vacunar = 500 + i * 50;
+
+        provincias[i].cantidadDeAlergicos = cantidadDeAlergicos;
+
+        for(int j = 0; j < cantidadDeAlergicos; j++) {
+            provincias[i].alergicosID[j] = j + 1;
+        }
+    }
+    printf("Datos inicializados correctamente\n");
 }
 
 
 int main() {
     
-    int asientos[10];
-    int size = 10;
+    struct Provincia {
+        char nombre[50];
+        int vacunados;
+        int vacunar;
+        int cantidadDeAlergicos;
+        int alergicosID[10000]; 
+    };
 
-    menu(asientos, size);
+    int cantidadProvincias = 15;
+
+    struct Provincia[cantidadProvincias];
+
+    strcpy(provincias[0].nombre, "Pinar del Rio");
+    strcpy(provincias[1].nombre, "Artemisa");
+    strcpy(provincias[2].nombre, "La Habana");
+    strcpy(provincias[3].nombre, "Mayabeque");
+    strcpy(provincias[4].nombre, "Matanzas");
+    strcpy(provincias[5].nombre, "Cienfuegos");
+    strcpy(provincias[6].nombre, "Villa Clara");
+    strcpy(provincias[7].nombre, "Sancti Spiritus");
+    strcpy(provincias[8].nombre, "Ciego de Avila");
+    strcpy(provincias[9].nombre, "Camaguey");
+    strcpy(provincias[10].nombre, "Las Tunas");
+    strcpy(provincias[11].nombre, "Holguin");
+    strcpy(provincias[12].nombre, "Granma");
+    strcpy(provincias[13].nombre, "Santiago de Cuba");
+    strcpy(provincias[14].nombre, "Guantanamo");
+
 
     return 0;
 }
