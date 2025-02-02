@@ -143,6 +143,12 @@ void ProductosVendidosTodosLosDias(DatosVolantes volantes[4], bool productosVend
 
   int vendedor = 0;
 
+  //Mostrar los vendedores
+  printf("Vendedores: \n");
+  for(int i = 0; i < NUM_VENDEDORES; i++){
+    printf("%d. %s\n", i, vendedores[i]);
+  }
+
   printf("Escriba el indice del vendedor correspondiente: ");
   while(scanf("%d", &vendedor) == 0){
     printf("ERROR: Escriba el indice valido: ");
@@ -158,6 +164,12 @@ void ProductosVendidosTodosLosDias(DatosVolantes volantes[4], bool productosVend
         printf("El vendedor %s tiene ventas todos los dias del producto: %s\n", vendedores[vendedor], productos[fila]);
       }
   }
+
+  //Volver a false los productos vendidos todos los dias
+  for(int i = 0; i < NUM_PRODUCTOS; i++){
+    productosVendidosTodosLosDias[i][vendedor] = false;
+  }
+  
 }
 
 void mostrarArregloProductos(char arreglo[][10], int cant) {
@@ -337,6 +349,7 @@ void menuReportes(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[
       getchar();
       break;
     case '6':
+      system("clear");
       ProductosVendidosTodosLosDias(volantes, productosVendidosTodosLosDias, vendedores, productos);
       getchar();
       break;
