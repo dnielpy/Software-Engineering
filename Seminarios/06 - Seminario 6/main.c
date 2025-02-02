@@ -13,10 +13,43 @@ typedef struct datosVolantes DatosVolantes;
 
 #endif // DATOS_H
 
-
-
+#define NUM_VENDEDORES 4
+#define NUM_PRODUCTOS 5
 
 //Logica
+
+void inicializarProductosVendidosTodosLosDias(int vendedor, DatosVolantes volantes[4], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES]){
+    int cantidadDias = volantes[vendedor].cantDias;
+    bool stop = false;
+
+    bool productosVendidos[NUM_PRODUCTOS];   //Los productos vendidos todos los dias de cada vendedor
+    for (int i = 0; i < NUM_PRODUCTOS; i++) {
+        productosVendidos[i] = true; 
+    }
+
+    for (int producto = 0; producto < NUM_PRODUCTOS; producto++) {
+      stop = false;
+      if (cantidadDias == 0) {
+          productosVendidos[producto] = false; 
+      } else {
+        for (int dia = 0; dia < cantidadDias && stop == false; dia++) {
+            if (volantes[vendedor].ventas[producto][dia] == 0.00) {
+              productosVendidos[producto] = false; 
+              stop = true;
+            }
+        }
+      }
+    }
+
+    for(int producto = 0; producto < NUM_PRODUCTOS; producto++){
+      if(productosVendidos[producto]){
+        productosVendidosTodosLosDias[producto][vendedor] = true;
+      } else{
+         productosVendidosTodosLosDias[producto][vendedor] = false;
+      }
+    }
+}
+
 void inicializar(DatosVolantes volantes[]) {
   volantes[0].cantDias = 2;
   volantes[0].ventas[0][0] = 1;
@@ -106,16 +139,34 @@ void actualizarSales(float sales[5][4], DatosVolantes volantes[4]) {
   }
 }
 
+void ProductosVendidosTodosLosDias(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES], char vendedores[][15], char productos[][10]){
 
+  int vendedor = 0;
 
-//Interfaz
+  printf("Escriba el indice del vendedor correspondiente: ");
+  while(scanf("%d", &vendedor) == 0){
+    printf("ERROR: Escriba el indice valido: ");
+    while ( getchar() != '\n'); // Clear input buffer
+  }
+
+  inicializarProductosVendidosTodosLosDias(vendedor, volantes, productosVendidosTodosLosDias);
+
+  int fila;
+  for(fila = 0; fila < NUM_PRODUCTOS; fila++){
+      if(productosVendidosTodosLosDias[fila][vendedor] == true){
+        //Mostrar
+        printf("El vendedor %s tiene ventas todos los dias del producto: %s\n", vendedores[vendedor], productos[fila]);
+      }
+  }
+}
+
 void mostrarArregloProductos(char arreglo[][10], int cant) {
   printf("Productos\n");
   int i;
   for (i = 0; i < cant; i++)
     printf("%s \n",  arreglo[i]);
-  system("pause");
-  system("cls");
+  getchar();
+  while ( getchar() != '\n');
 }
 
 void mostrarArregloVendedores(char arreglo[][15], int cant) {
@@ -123,8 +174,8 @@ void mostrarArregloVendedores(char arreglo[][15], int cant) {
   int i;
   for (i = 0; i < cant; i++)
     printf("%s \n",  arreglo[i]);
-  system("pause");
-  system("cls");
+  getchar();
+  while ( getchar() != '\n');
 }
 
 void mostrarVolantes(DatosVolantes volantes[4]) {
@@ -142,7 +193,8 @@ void mostrarVolantes(DatosVolantes volantes[4]) {
     }
     printf("\n");
   }
-  system("pause");
+  printf("\n");
+  getchar();
 }
 
 void mostrarVentas(float sales[][4], char vendedores[][15], char productos[][10]) {
@@ -180,14 +232,14 @@ bool menuEntrada(DatosVolantes volantes[], char vendedores[][15], char productos
     printf("1. Entrada por teclado \n");
     printf("2. Inicializar por funci\242n \n");
     resp = getchar();
-    fflush(stdin);
+    while ( getchar() != '\n'); // Clear input buffer
   }
   while (resp < '1' || resp > '2');
   switch (resp) {
     case '1':
       printf("Implementar \n");
       // Cuando se implemente, se debe cambiar el valor de datos a true
-      system("pause");
+      getchar();
       break;
     case '2':
       inicializar(volantes);
@@ -195,12 +247,11 @@ bool menuEntrada(DatosVolantes volantes[], char vendedores[][15], char productos
       inicializarProductos(productos);
       printf("Datos inicializados \n");
       datos = true;
-      system("pause");
+      getchar();
       break;
   }
   return datos;
 }
-
 
 void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5][10], char vendedores[4][15], bool datos, bool act) {
   char resp = 0;
@@ -211,7 +262,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
     printf("3. Listado de volantes \n");
     printf("4. Ventas del mes \n");
     resp = getchar();
-    fflush(stdin);
+    while ( getchar() != '\n'); // Clear input buffer
   }
   while (resp < '1' || resp > '4');
   switch (resp) {
@@ -220,7 +271,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarArregloProductos(productos, 5);
       else {
         printf("Los datos no han sido inicializados \n");
-        system("pause");
+        getchar();
       }
       break;
     case '2':
@@ -228,7 +279,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarArregloVendedores(vendedores, 4);
       else {
         printf("Los datos no han sido inicializados \n");
-        system("pause");
+        getchar();
       }
       break;
     case '3':
@@ -236,7 +287,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarVolantes(volantes);
       else {
         printf("Los datos no han sido inicializados \n");
-        system("pause");
+        getchar();
       }
       break;
     case '4':
@@ -244,12 +295,11 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarVentas(sales, vendedores, productos);
       else
         printf("No se han actualizado las ventas \n");
-      system("pause");
-
+      getchar();
   }
 }
 
-void menuReportes() {
+void menuReportes(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES], char vendedores[][15], char productos[][10]) {
   char resp;
   do {
     printf("   Reportes \n");
@@ -262,41 +312,41 @@ void menuReportes() {
     printf("7. Nombre de los vendedores que no vendieron un producto dado m\240s del 50%% de los d\241as que trabaj\242 (F6) \n");
     printf("8. Nombre de los productos que no fueron vendidos por un vendedor dado el 100%% de los d\241as que trabaj\242 (F7) \n");
     resp = getchar();
-    fflush(stdin);
+    while ( getchar() != '\n'); // Clear input buffer
   }
   while (resp < '1' || resp > '8');
   switch (resp) {
     case '1':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
     case '2':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
     case '3':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
     case '4':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
     case '5':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
     case '6':
-      printf("Implementar \n");
-      system("pause");
+      ProductosVendidosTodosLosDias(volantes, productosVendidosTodosLosDias, vendedores, productos);
+      getchar();
       break;
     case '7':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
     case '8':
       printf("Implementar \n");
-      system("pause");
+      getchar();
       break;
   }
 }
@@ -305,8 +355,9 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
   char resp;
   bool datos = false;
   bool act = false;
+  bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES] = {false}; // Declarar la variable aquí
   do {
-    system("cls");
+    while ( getchar() != '\n'); // Clear input buffer
     printf("     Opciones \n");
     printf("1. Entrada de vendedores, productos y volantes \n");
     printf("2. Actualizar ventas (sales) \n");
@@ -314,7 +365,7 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
     printf("4. Reportes \n");
     printf("5. Terminar \n");
     resp = getchar();
-    fflush(stdin);
+    while ( getchar() != '\n'); // Clear input buffer
     switch (resp) {
       case '1':
         datos = menuEntrada(volantes, vendedores, productos);
@@ -324,11 +375,11 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
           actualizarSales(sales, volantes);
           act = true;
           printf("Se han actualizado las ventas \n");
-          system("pause");
+          getchar();
         }
         else {
            printf("Los volantes no han sido inicializados \n");
-           system("pause");
+           getchar();
         }
         break;
       case '3':
@@ -336,26 +387,25 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
           menuListados(sales, volantes, productos, vendedores, datos, act);
         else {
           printf("Los datos no han sido inicializados \n");
-          system("pause");
+          getchar();
         }
         break;
       case '4':
-        menuReportes();
+        menuReportes(volantes, productosVendidosTodosLosDias, vendedores, productos);
         break;
       case '5':
         break;
       default:
         printf("Opci\242n err\242nea \n");
-        system("pause");
+        getchar();
     }
   }
   while (resp != '5');
 }
 
-
 int main(void)
 {
-    printf("\n\n");
+  printf("\n\n");
   DatosVolantes volantes[4];
   char vendedores[4][15];
   char productos[5][10];
@@ -363,4 +413,3 @@ int main(void)
   menu(volantes, sales, productos, vendedores);
   return 0;
 }
-
