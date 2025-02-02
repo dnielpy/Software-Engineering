@@ -16,7 +16,23 @@ typedef struct datosVolantes DatosVolantes;
 #define NUM_VENDEDORES 4
 #define NUM_PRODUCTOS 5
 
-//Logica
+bool noVendioProductoMasDel50Porciento(int vendedor, int producto, DatosVolantes volantes[], int numProductos, int numVendedores) {
+    bool cond = false;
+    int cantidadDias = volantes[vendedor].cantDias;
+    int diasNoVendidos = 0;
+
+    for (int dia = 0; dia < cantidadDias; dia++) {
+        if (volantes[vendedor].ventas[producto][dia] == 0.00) {
+            diasNoVendidos++;
+        }
+    }
+
+    float porcentajeNoVendidos = ((float)diasNoVendidos / cantidadDias) * 100;
+    if (porcentajeNoVendidos > 50) {
+        cond = true;
+    }
+    return cond;
+}
 
 void inicializarProductosVendidosTodosLosDias(int vendedor, DatosVolantes volantes[4], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES]){
     int cantidadDias = volantes[vendedor].cantDias;
@@ -139,37 +155,54 @@ void actualizarSales(float sales[5][4], DatosVolantes volantes[4]) {
   }
 }
 
-void ProductosVendidosTodosLosDias(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES], char vendedores[][15], char productos[][10]){
-
-  int vendedor = 0;
-
-  //Mostrar los vendedores
-  printf("Vendedores: \n");
-  for(int i = 0; i < NUM_VENDEDORES; i++){
-    printf("%d. %s\n", i, vendedores[i]);
-  }
-
-  printf("Escriba el indice del vendedor correspondiente: ");
-  while(scanf("%d", &vendedor) == 0){
-    printf("ERROR: Escriba el indice valido: ");
-    while ( getchar() != '\n'); // Clear input buffer
-  }
-
-  inicializarProductosVendidosTodosLosDias(vendedor, volantes, productosVendidosTodosLosDias);
-
-  int fila;
-  for(fila = 0; fila < NUM_PRODUCTOS; fila++){
-      if(productosVendidosTodosLosDias[fila][vendedor] == true){
-        //Mostrar
-        printf("El vendedor %s tiene ventas todos los dias del producto: %s\n", vendedores[vendedor], productos[fila]);
+void ProductosVendidosTodosLosDias(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES], char vendedores[][15], char productos[][10]) {
+  for (int vendedor = 0; vendedor < NUM_VENDEDORES; vendedor++) {
+    inicializarProductosVendidosTodosLosDias(vendedor, volantes, productosVendidosTodosLosDias);
+    printf("Estadísticas para el vendedor %s:\n", vendedores[vendedor]);
+    for (int producto = 0; producto < NUM_PRODUCTOS; producto++) {
+      if (productosVendidosTodosLosDias[producto][vendedor]) {
+        printf("El vendedor %s tiene ventas todos los días del producto: %s\n", vendedores[vendedor], productos[producto]);
       }
+    }
+    printf("\n");
   }
 
-  //Volver a false los productos vendidos todos los dias
-  for(int i = 0; i < NUM_PRODUCTOS; i++){
-    productosVendidosTodosLosDias[i][vendedor] = false;
+  for (int i = 0; i < NUM_PRODUCTOS; i++) {
+    for (int j = 0; j < NUM_VENDEDORES; j++) {
+      productosVendidosTodosLosDias[i][j] = false;
+    }
   }
-  
+}
+
+void verificarVendedoresQueNoVendieronProductoMasDel50Porciento(DatosVolantes volantes[], char vendedores[][15], char productos[][10], int numProductos, int numVendedores) {
+    for (int vendedor = 0; vendedor < numVendedores; vendedor++) {
+        for (int producto = 0; producto < numProductos; producto++) {
+            if (noVendioProductoMasDel50Porciento(vendedor, producto, volantes, numProductos, numVendedores)) {
+                printf("El vendedor %s no vendió el producto %s más del 50%% de los días que trabajó.\n", vendedores[vendedor], productos[producto]);
+            }
+        }
+    }
+}
+
+void verificarProductosQueNoFueronVendidosPorVendedor(DatosVolantes volantes[], char productos[][10], int numProductos, char vendedores[][15]) {
+    int vendedor;
+    for (vendedor = 0; vendedor < NUM_VENDEDORES; vendedor++) {
+      printf("Estadísticas para el vendedor %s:\n", vendedores[vendedor]);
+      int producto;
+      for (producto = 0; producto < numProductos; producto++) {
+        if (noVendioProductoMasDel50Porciento(vendedor, producto, volantes, numProductos, NUM_VENDEDORES)) {
+          printf("El producto %s no fue vendido el 100%% de los días que trabajó.\n", productos[producto]);
+        }
+      }
+      printf("\n");
+    }
+
+    
+    for (int producto = 0; producto < numProductos; producto++) {
+        if (noVendioProductoMasDel50Porciento(vendedor, producto, volantes, numProductos, NUM_VENDEDORES)) {
+            printf("El producto %s no fue vendido por el vendedor %d el 100%% de los días que trabajó.\n", productos[producto], vendedor);
+        }
+    }
 }
 
 void mostrarArregloProductos(char arreglo[][10], int cant) {
@@ -354,23 +387,24 @@ void menuReportes(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[
       getchar();
       break;
     case '7':
-      printf("Implementar \n");
+      system("clear");
+      verificarVendedoresQueNoVendieronProductoMasDel50Porciento (volantes, vendedores, productos, NUM_PRODUCTOS, NUM_VENDEDORES);
       getchar();
       break;
     case '8':
-      printf("Implementar \n");
+      system("clear");
+      verificarProductosQueNoFueronVendidosPorVendedor(volantes, productos, NUM_PRODUCTOS, vendedores);
       getchar();
       break;
   }
 }
 
-void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], char vendedores[4][15]) {
+void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], char vendedores[4][15], bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES]) {
   char resp;
   bool datos = false;
   bool act = false;
-  bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES] = {false}; // Declarar la variable aquí
   do {
-    while ( getchar() != '\n'); // Clear input buffer
+    while ( getchar() != '\n'); 
     printf("     Opciones \n");
     printf("1. Entrada de vendedores, productos y volantes \n");
     printf("2. Actualizar ventas (sales) \n");
@@ -378,7 +412,7 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
     printf("4. Reportes \n");
     printf("5. Terminar \n");
     resp = getchar();
-    while ( getchar() != '\n'); // Clear input buffer
+    while ( getchar() != '\n'); 
     switch (resp) {
       case '1':
         datos = menuEntrada(volantes, vendedores, productos);
@@ -419,10 +453,11 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
 int main(void)
 {
   printf("\n\n");
+  bool productosVendidosTodosLosDias[NUM_PRODUCTOS][NUM_VENDEDORES] = {false};
   DatosVolantes volantes[4];
   char vendedores[4][15];
   char productos[5][10];
   float sales[5][4] = {0};
-  menu(volantes, sales, productos, vendedores);
+  menu(volantes, sales, productos, vendedores, productosVendidosTodosLosDias);
   return 0;
 }
