@@ -210,8 +210,8 @@ void mostrarArregloProductos(char arreglo[][10], int cant) {
   int i;
   for (i = 0; i < cant; i++)
     printf("%s \n",  arreglo[i]);
-  getchar();
-  while ( getchar() != '\n');
+  system("pause");
+  fflush(stdin);
 }
 
 void mostrarArregloVendedores(char arreglo[][15], int cant) {
@@ -219,8 +219,8 @@ void mostrarArregloVendedores(char arreglo[][15], int cant) {
   int i;
   for (i = 0; i < cant; i++)
     printf("%s \n",  arreglo[i]);
-  getchar();
-  while ( getchar() != '\n');
+  system("pause");
+  fflush(stdin);
 }
 
 void mostrarVolantes(DatosVolantes volantes[4]) {
@@ -239,7 +239,7 @@ void mostrarVolantes(DatosVolantes volantes[4]) {
     printf("\n");
   }
   printf("\n");
-  getchar();
+  system("pause");
 }
 
 void mostrarVentas(float sales[][4], char vendedores[][15], char productos[][10]) {
@@ -276,15 +276,15 @@ bool menuEntrada(DatosVolantes volantes[], char vendedores[][15], char productos
     printf("   Opciones de entrada de datos \n");
     printf("1. Entrada por teclado \n");
     printf("2. Inicializar por funci\242n \n");
-    resp = getchar();
-    while ( getchar() != '\n'); // Clear input buffer
+    resp = system("pause");
+    fflush(stdin); // Clear input buffer
   }
   while (resp < '1' || resp > '2');
   switch (resp) {
     case '1':
       printf("Implementar \n");
       // Cuando se implemente, se debe cambiar el valor de datos a true
-      getchar();
+      system("pause");
       break;
     case '2':
       inicializar(volantes);
@@ -292,7 +292,7 @@ bool menuEntrada(DatosVolantes volantes[], char vendedores[][15], char productos
       inicializarProductos(productos);
       printf("Datos inicializados \n");
       datos = true;
-      getchar();
+      system("pause");
       break;
   }
   return datos;
@@ -306,8 +306,8 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
     printf("2. Listado de vendedores \n");
     printf("3. Listado de volantes \n");
     printf("4. Ventas del mes \n");
-    resp = getchar();
-    while ( getchar() != '\n'); // Clear input buffer
+    resp = system("pause");
+    fflush(stdin); // Clear input buffer
   }
   while (resp < '1' || resp > '4');
   switch (resp) {
@@ -316,7 +316,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarArregloProductos(productos, 5);
       else {
         printf("Los datos no han sido inicializados \n");
-        getchar();
+        system("pause");
       }
       break;
     case '2':
@@ -324,7 +324,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarArregloVendedores(vendedores, 4);
       else {
         printf("Los datos no han sido inicializados \n");
-        getchar();
+        system("pause");
       }
       break;
     case '3':
@@ -332,7 +332,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarVolantes(volantes);
       else {
         printf("Los datos no han sido inicializados \n");
-        getchar();
+        system("pause");
       }
       break;
     case '4':
@@ -340,7 +340,7 @@ void menuListados(float sales[5][4], DatosVolantes volantes[4], char productos[5
         mostrarVentas(sales, vendedores, productos);
       else
         printf("No se han actualizado las ventas \n");
-      getchar();
+      system("pause");
   }
 }
 
@@ -356,45 +356,45 @@ void menuReportes(DatosVolantes volantes[4], bool productosVendidosTodosLosDias[
     printf("6. Nombre de los productos que un vendedor dado tenga ventas en todos sus d\241as de trabajo (F5) \n");
     printf("7. Nombre de los vendedores que no vendieron un producto dado m\240s del 50%% de los d\241as que trabaj\242 (F6) \n");
     printf("8. Nombre de los productos que no fueron vendidos por un vendedor dado el 100%% de los d\241as que trabaj\242 (F7) \n");
-    resp = getchar();
-    while ( getchar() != '\n'); // Clear input buffer
+    resp = system("pause");
+    fflush(stdin); // Clear input buffer
   }
   while (resp < '1' || resp > '8');
   switch (resp) {
     case '1':
       printf("Implementar \n");
-      getchar();
+      system("pause");
       break;
     case '2':
       printf("Implementar \n");
-      getchar();
+      system("pause");
       break;
     case '3':
       printf("Implementar \n");
-      getchar();
+      system("pause");
       break;
     case '4':
       printf("Implementar \n");
-      getchar();
+      system("pause");
       break;
     case '5':
       printf("Implementar \n");
-      getchar();
+      system("pause");
       break;
     case '6':
-      system("clear");
+      system("cls");
       ProductosVendidosTodosLosDias(volantes, productosVendidosTodosLosDias, vendedores, productos);
-      getchar();
+      system("pause");
       break;
     case '7':
-      system("clear");
+      system("cls");
       verificarVendedoresQueNoVendieronProductoMasDel50Porciento (volantes, vendedores, productos, NUM_PRODUCTOS, NUM_VENDEDORES);
-      getchar();
+      system("pause");
       break;
     case '8':
-      system("clear");
+      system("cls");
       verificarProductosQueNoFueronVendidosPorVendedor(volantes, productos, NUM_PRODUCTOS, vendedores);
-      getchar();
+      system("pause");
       break;
   }
 }
@@ -404,15 +404,15 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
   bool datos = false;
   bool act = false;
   do {
-    while ( getchar() != '\n'); 
+    fflush(stdin); 
     printf("     Opciones \n");
     printf("1. Entrada de vendedores, productos y volantes \n");
     printf("2. Actualizar ventas (sales) \n");
     printf("3. Mostrar datos \n");
     printf("4. Reportes \n");
     printf("5. Terminar \n");
-    resp = getchar();
-    while ( getchar() != '\n'); 
+    resp = system("pause");
+    fflush(stdin); 
     switch (resp) {
       case '1':
         datos = menuEntrada(volantes, vendedores, productos);
@@ -422,11 +422,11 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
           actualizarSales(sales, volantes);
           act = true;
           printf("Se han actualizado las ventas \n");
-          getchar();
+          system("pause");
         }
         else {
            printf("Los volantes no han sido inicializados \n");
-           getchar();
+           system("pause");
         }
         break;
       case '3':
@@ -434,7 +434,7 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
           menuListados(sales, volantes, productos, vendedores, datos, act);
         else {
           printf("Los datos no han sido inicializados \n");
-          getchar();
+          system("pause");
         }
         break;
       case '4':
@@ -444,7 +444,7 @@ void menu(DatosVolantes volantes[], float sales[5][4], char productos[5][10], ch
         break;
       default:
         printf("Opci\242n err\242nea \n");
-        getchar();
+        system("pause");
     }
   }
   while (resp != '5');
