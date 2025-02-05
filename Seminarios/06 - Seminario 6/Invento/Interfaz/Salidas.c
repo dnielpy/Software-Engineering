@@ -78,7 +78,7 @@ void verificarProductosQueNoFueronVendidosPorVendedor(DatosVolantes volantes[], 
     int producto;
     for (producto = 0; producto < 5; producto++) {
         if(sales[producto][vendedor] == 0){
-            printf("\nEl producto %s no fue vendi\xa2 en el 100% de los d\241as que trabaj\xa2", productos[producto]);
+            printf("\nEl producto %s no se vendi\xa2 en el 100% de los d\241as que trabaj\xa2", productos[producto]);
             noVentas++;
         }
     }
