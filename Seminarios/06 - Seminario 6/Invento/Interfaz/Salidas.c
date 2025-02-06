@@ -6,14 +6,16 @@ void ProductosVendidosTodosLosDias(DatosVolantes volantes[4], bool productosVend
     int vendedor;
 
     for(vendedor = 0; vendedor < 4; vendedor++){
-        printf("\n%d - %s", vendedor, vendedores[vendedor]);
+        printf("\n%d - %s", vendedor+1, vendedores[vendedor]);
     }
     printf("\nEscriba el \xa1ndice del vendedor: ");
 
-    while(scanf("%d", &vendedor) == 0 || vendedor < 0 || vendedor > 4){
+    while(scanf("%d", &vendedor) == 0 || vendedor < 1 || vendedor > 5){
         printf("\nERROR: Escriba un \xa1ndice v\xa0lido: ");
         fflush(stdin);
     }
+
+    vendedor--;
 
     int i;
     int j;
@@ -38,14 +40,16 @@ void verificarVendedoresQueNoVendieronProductoMasDel50Porciento(DatosVolantes vo
     int producto;
 
     for(producto = 0; producto < 5; producto++){
-        printf("\n%d - %s", producto, productos[producto]);
+        printf("\n%d - %s", producto+1, productos[producto]);
     }
     printf("\nEscriba el \xa1ndice del producto: ");
 
-    while(scanf("%d", &producto) == 0 || producto < 0 || producto > 5){
+    while(scanf("%d", &producto) == 0 || producto < 1 || producto > 5){
         printf("\nERROR: Escriba un \xa1ndice v\xa0lido: ");
         fflush(stdin);
     }
+
+    producto--;
 
     int vendedor;
     bool encontrado = false;
@@ -66,14 +70,16 @@ void verificarProductosQueNoFueronVendidosPorVendedor(DatosVolantes volantes[], 
     int vendedor;
 
     for(vendedor = 0; vendedor < 4; vendedor++){
-        printf("\n%d - %s", vendedor, vendedores[vendedor]);
+        printf("\n%d - %s", vendedor+1, vendedores[vendedor]);
     }
     printf("\nEscriba el \xa1ndice del vendedor: ");
 
-    while(scanf("%d", &vendedor) == 0 || vendedor < 0 || vendedor > 4){
+    while(scanf("%d", &vendedor) == 0 || vendedor < 1 || vendedor > 5){
         printf("\nERROR: Escriba un \xa1ndice v\xa0lido: ");
         fflush(stdin);
     }
+
+    vendedor--;
 
     int producto;
     for (producto = 0; producto < 5; producto++) {
