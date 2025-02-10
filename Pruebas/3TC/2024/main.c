@@ -1,69 +1,52 @@
 #include <stdio.h>
 #include <stdbool.h>
-    
-//Ejercicios del libro de IP
-//6.30 La Criba de Erastotenes
-/*
-void isAPrimeNumber(int numbers[1000], int n){
+#include <string.h>
+#include <ctype.h>
+
+
+int findValue(int arreglo[], int size, int value){
+    int tam = size;
+
     int i;
-    numbers[0] = 0;
-    for(i = 1; i < n; i++){
-        numbers[i] = 1;
-    }
-
-    for(i = 2; i < n; i++){
-        int j = i+1;
-        for(j; j < n; j++){
-            if(j % i == 0){
-                numbers[j] = 0;
-            }
-        }
-
-    }
-
-    for(i = 0; i < n; i++){
-        if(numbers[i] == 1){
-            printf("\nEs primo el numero: %d", i);
+    int contador = 0;
+    for(i = 0; i < size; i++){
+        if(arreglo[i] == value){
+            arreglo[i] = arreglo[i]+2;
+            contador++;
         }
     }
+    if(contador == 0){
+        arreglo[size] = value;
+        tam++; 
+    }
+
+    return tam;
 }
-
-//VERSION OPTIMIZADA
-int countPrimes(int n) {
-    long total = 0;
-    if(n < 2){
-        total = 0;
-    }
-    else{
-        int x[n];
-        long i;
-        for(i = 0; i < n; i++){
-            x[i] = 1;
-        }
-        for(i = 2; i < n; i++){
-            if(x[i] == 1){
-                long j = i * i;
-                for(j; j < n; j+=i){
-                    if(j % i == 0){
-                        x[j] = 0; 
-                    }
-                }
-                if(x[i] == 1){
-                    total++;
-                }
-            }   
-        }
-    }
-    return total;
-}
-
-*/
 
 
 int main() {
+    char ch = '7';
+    char ch2 = 'a';
 
-    int y = 10;
+    // isdigit(): Comprueba si es un dígito.
+    if (isdigit(ch)) {
+        printf("'%c' es un dígito.\n", ch);
+    }
 
-    printf("Primos menores que %d: %d", y, countPrimes(y));
+    // isalpha(): Comprueba si es una letra.
+    if (isalpha(ch2)) {
+        printf("'%c' es una letra.\n", ch2);
+    }
+
+    // toupper(): Convierte a mayúscula.
+    printf("'%c' en mayúscula: '%c'\n", ch2, toupper(ch2));
+
+    // tolower(): Convierte a minúscula.
+    char ch3 = 'Z';
+    printf("'%c' en minúscula: '%c'\n", ch3, tolower(ch3));
+
     return 0;
 }
+
+
+    

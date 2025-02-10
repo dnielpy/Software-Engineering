@@ -6,7 +6,7 @@ int removeDuplicates(int* nums, int numsSize) {
     int x[numsSize];
 
     int i;
-    int j;
+    int j;  
     for(i = 0; i < numsSize; i++){
         bool repeated = false;
         for(j = 0; j < numsSize; j++){
