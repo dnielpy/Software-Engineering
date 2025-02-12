@@ -4,17 +4,19 @@
 #include <Logica/Datos.h>
 #include <Logica/Logica.h>
 
-
+//Ingresar datos manualmente
 void ingresarDatosManualmente(Provincia provincias[], int cantidadProvincias) {
     int vacunados;
     int vacunar;
     int cantidadDeAlergicos;
     char alergicosID[10000][11];
 
+    int restantes = 0;
+
     system("cls");
     int provincia;
 
-    printf("-- Provincias Ya Inicializadas --");
+    printf("-- PROVINCIAS YA INICIALIZADAS --");
     for(provincia = 0; provincia < cantidadProvincias; provincia++){
         if(provincias[provincia].vacunar != 0 && provincias[provincia].vacunados != 0){
             printf("\n* %s", provincias[provincia].nombre);
@@ -23,57 +25,66 @@ void ingresarDatosManualmente(Provincia provincias[], int cantidadProvincias) {
 
     printf("\n\n------------------------------------------------\n\n");
     printf("\n-- PROVINCIAS RESTANTES --");
-    printf("\nEscriba a continuaci\242n el \241ndice de la provincia: ");
     for(provincia = 0; provincia < cantidadProvincias; provincia++){
         if(provincias[provincia].vacunar == 0 && provincias[provincia].vacunados == 0){
             printf("\n%d - %s", provincia+1, provincias[provincia].nombre);
+            restantes++;
         }
     }
 
-    while(scanf("%d", &provincia) == 0 || provincia <= 0 || provincia > cantidadProvincias || (provincias[provincia-1].vacunar != 0 && provincias[provincia-1].vacunados != 0)){
-        printf("ERROR: Escriba una opci\242n v\240lida.");
-        fflush(stdin);
-    }
-    provincia--;
+    if(restantes > 0){
+        printf("\nEscriba a continuaci\242n el \241ndice de la provincia: ");
+        while(scanf("%d", &provincia) == 0 || provincia <= 0 || provincia > cantidadProvincias || (provincias[provincia-1].vacunar != 0 && provincias[provincia-1].vacunados != 0)){
+            printf("ERROR: Escriba una opci\242n v\240lida.");
+            fflush(stdin);
+        }
+        provincia--;
 
-    system("cls");
-    printf("Provincia: %s\n", provincias[provincia].nombre);
-    //Inicializar Vacunados
-    printf("Ingrese la cantidad de vacunados: ");
-    while(scanf("%d", &vacunados) == 0 || vacunados < 0){
-        printf("Ingrese un n\243mero v\240lido: ");
-        fflush(stdin);
-    }
-    provincias[provincia].vacunados = vacunados;
-
-    //Inicializar Vacunar
-    printf("Ingrese la cantidad de personas a vacunar: ");
-    while(scanf("%d", &vacunar) == 0 || vacunar < 0){
-        printf("Ingrese un n\243mero v\240lido: ");
-        fflush(stdin);
-    }
-    provincias[provincia].vacunar = vacunar;
-
-    //Inicializar Alergicos
-    printf("Ingrese la cantidad de alergicos: ");
-    while(scanf("%d", &cantidadDeAlergicos) == 0 || cantidadDeAlergicos < 0){
-        printf("Ingrese un n\243mero v\240lido: ");
-        fflush(stdin);
-    }
-
-    provincias[provincia].cantidadDeAlergicos = cantidadDeAlergicos;
-
-    //Inicializar AlergicosID
-    int j;
-    for(j = 1; j <= cantidadDeAlergicos; j++){
-        printf("Ingrese el ID del al\202rgico %d: ", j);
-        while(scanf("%s", &alergicosID[j-1]) == 0 || chequearIdValido(alergicosID[j-1]) == false) {
+        system("cls");
+        printf("Provincia: %s\n", provincias[provincia].nombre);
+        //Inicializar Vacunados
+        printf("Ingrese la cantidad de vacunados: ");
+        while(scanf("%d", &vacunados) == 0 || vacunados < 0){
             printf("Ingrese un n\243mero v\240lido: ");
             fflush(stdin);
         }
-        strcpy(provincias[provincia].alergicosID[j-1], alergicosID[j-1]);
+        provincias[provincia].vacunados = vacunados;
+
+        //Inicializar Vacunar
+        printf("Ingrese la cantidad de personas a vacunar: ");
+        while(scanf("%d", &vacunar) == 0 || vacunar < 0){
+            printf("Ingrese un n\243mero v\240lido: ");
+            fflush(stdin);
+        }
+        provincias[provincia].vacunar = vacunar;
+
+        //Inicializar Alergicos
+        printf("Ingrese la cantidad de alergicos: ");
+        while(scanf("%d", &cantidadDeAlergicos) == 0 || cantidadDeAlergicos < 0){
+            printf("Ingrese un n\243mero v\240lido: ");
+            fflush(stdin);
+        }
+
+        provincias[provincia].cantidadDeAlergicos = cantidadDeAlergicos;
+
+        // Inicializar AlergicosID
+        int j;
+        for (j = 1; j <= cantidadDeAlergicos; j++) {
+            printf("Ingrese el ID del alergico %d: ", j);
+
+            while (scanf("%10s", alergicosID[j - 1]) == 0 || !chequearIdValido(alergicosID[j - 1])) {
+                printf("Ingrese un CI v\240lido: ");
+                fflush(stdin);
+            }
+            strcpy(provincias[provincia].alergicosID[j - 1], alergicosID[j - 1]);
+            printf("-- Datos ingresados con \202xito -- \n\n");
+        }
     }
-    system("clear");
+    else{
+        printf("\n\nTodas las provincias ya fueron inicializadas\n");
+    }
+    system("pause");
+
 }
 
 
@@ -97,20 +108,21 @@ void mostrarTotalAVacunar(Provincia provincias[], int cantidadProvincias){
 void reporteAlergicos(Provincia provincias[], int cantidadProvincias){
     system("cls");
     int provincia;
-
+    printf("-- Reporte de al\202rgico a vacunar en el pa\241s --\n\n");
     for(provincia = 0; provincia < cantidadProvincias; provincia++){
         if(provincias[provincia].cantidadDeAlergicos > 0){
             printf("\n\nProvincia: %s", provincias[provincia].nombre);
             printf("\nCantidad de al\202rgico: %d", provincias[provincia].cantidadDeAlergicos);
         }
     }
-    printf("\n\n-- Total de al\202rgico a vacunar en el pa\241s: %d --", totalAlergicos(provincias, cantidadProvincias));
+    printf("\n\n-- Total de al\202rgico a vacunar en el pa\241s: %d --\n\n", totalAlergicos(provincias, cantidadProvincias));
     system("pause");
 }
 
 
 void reporteVacunadosVsVacunar(Provincia provincias[], int cantidadProvincias){
     system("cls");
+    printf("-- Reporte de superar\240 la cantidad de ni\244os a vacunar con respecto a la campa\244a anterior --\n\n");
     int contador = 0;
     int provincia;
     for(provincia = 0; provincia < cantidadProvincias; provincia++){
@@ -119,6 +131,7 @@ void reporteVacunadosVsVacunar(Provincia provincias[], int cantidadProvincias){
 
         if(vacunar > vacunados){
             printf("\n\nLa provincia %s superar\240 la cantidad de ni\244os a vacunar con respecto a la campa\244a anterior.\nTotal de vacunados el a\244o anterior: %d \nTotal a vacunar este a\244o: %d", provincias[provincia].nombre, vacunados, vacunar);
+            contador++;
         }
     }
     if(contador == 0){
@@ -127,6 +140,7 @@ void reporteVacunadosVsVacunar(Provincia provincias[], int cantidadProvincias){
     system("pause");
 }
 
+//Reporte provincias que vacunaran mas
 void reporteProvinciasMasVacunaran(Provincia provincias[], int cantidadProvincias, bool provinciasVacunaranMas[]){
     system("cls");
     inicializarProvinciasConMayorVacunacion(provincias, cantidadProvincias, provinciasVacunaranMas);
@@ -142,6 +156,7 @@ void reporteProvinciasMasVacunaran(Provincia provincias[], int cantidadProvincia
     system("pause");
 }
 
+//Reporte de alergicos del 2015
 void reporteAlergico2015(Provincia provincias[], int cantidadProvincias){
     system("cls");
     int provincia;

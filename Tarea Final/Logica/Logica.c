@@ -4,6 +4,7 @@
 #include <Logica/Datos.h>
 #include <time.h>
 
+//Inicializar datos
 void inicializar(struct provincia provincias[], int cantProvincias){
     strcpy(provincias[0].nombre, "Pinar del Rio");
     strcpy(provincias[1].nombre, "Artemisa");
@@ -36,7 +37,7 @@ void inicializar(struct provincia provincias[], int cantProvincias){
     }
 }
 
-
+//Generar un id
 void generarID(char id[11]) {
     int year = 2007 + (rand() % 4);
     int month = 1 + (rand() % 12);
@@ -69,24 +70,25 @@ void inicializarDatosAutomaticamente(struct provincia provincias[], int cantProv
 }
 
 //Devuelve el total a vacunar
-int totalVacunar(Provincia provincias[], int cantProvincias){
+int totalVacunar(Provincia *provincias, int cantProvincias){
     int total = 0;
+    Provincia *p;
 
-    int provincia;
-    for(provincia = 0;provincia < cantProvincias; provincia++){
-        total += provincias[provincia].vacunar;
+    for(p = provincias; p < provincias + cantProvincias; p++){
+        total += p->vacunar;
     }
 
     return total;
 }
 
-//Devuelve el total de alérgicos
-int totalAlergicos(Provincia provincias[], int cantProvincias){
-    int total = 0;
 
-    int provincia;
-    for(provincia = 0; provincia < cantProvincias; provincia++){
-        total += provincias[provincia].cantidadDeAlergicos;
+//Devuelve el total de alérgicos
+int totalAlergicos(Provincia *provincias, int cantProvincias){
+    int total = 0;
+    Provincia *p;
+
+    for(p = provincias; p < provincias + cantProvincias; p++){
+        total += p->cantidadDeAlergicos;
     }
 
     return total;
@@ -100,7 +102,7 @@ void inicializarVacunaranMas(Provincia provincias[], int cantProvincias, bool pr
         provinciasVacunaranMas[provincia] = false;
     }
 
-    for(provincia = 0; provincia < cantProvincias; cantProvincias++){
+    for(provincia = 0; provincia < cantProvincias; provincia++){
         if(provincias[provincia].vacunados < provincias[provincia].vacunar){
             provinciasVacunaranMas[provincia] = true;
         }
@@ -130,6 +132,7 @@ void inicializarProvinciasConMayorVacunacion(Provincia provincias[], int cantPro
 }
 
 
+//Devuelve true si tiene algún alérgico
 bool tieneAlergico(Provincia provincias[], int cantProvincias, int provincia){
 
     bool alergico = false;
@@ -145,28 +148,60 @@ bool tieneAlergico(Provincia provincias[], int cantProvincias, int provincia){
 }
 
 
-bool chequearIdValido(char id[]){
+//Valida si el id ingresado es válido
+bool chequearIdValido(char id[]) {
     bool response = true;
 
-    if (id == NULL) {
+    if (id == NULL || id[0] == '\0') {
         response = false;
-    }
+    } else {
+        int i;
+        for (i = 0; id[i] != '\0' && response == true; i++) {
+            if (!isdigit(id[i])) {
+                response = false;
 
-
-    int i;
-    for (i = 0; id[i] != '\0'; i++) {
-        if (i > 11 || i < 0 || !isdigit(id[i])) {
-            response = false;
+            }
+            if (response == true && i > 10) {
+                response = false;
+            }
         }
-    }
 
-    if(i < 11){
-        response = false;
+        if (response) {
+            if (i != 10) {
+                response = false;
+            } else {
+                char yearStr[3] = {id[0], id[1], '\0'};
+                char monthStr[3] = {id[2], id[3], '\0'};
+                char dayStr[3] = {id[4], id[5], '\0'};
+
+                long year = strtol(yearStr, NULL, 10);
+                long month = strtol(monthStr, NULL, 10);
+                long day = strtol(dayStr, NULL, 10);
+
+                if (year < 07 || year > 25) {
+                    response = false;
+                } else if (month < 1 || month > 12) {
+                    response = false;
+                } else {
+                    int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    if (month == 2) { // Febrero
+                        if (day < 1 || day > 28) {
+                            response = false;
+                        }
+                    } else {
+                        if (day < 1 || day > daysInMonth[month]) {
+                            response = false;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return response;
 }
 
+//Busca algun alérgico que haya nacido en el 2015
 bool buscarAlergico2015(Provincia provincias[], int provincia, char idResult[11]) {
     bool result = false;
     int id;

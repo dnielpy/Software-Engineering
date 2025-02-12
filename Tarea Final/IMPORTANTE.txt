@@ -1,0 +1,5 @@
+Algunas consideraciones que tuve a la hora de programar la tarea:
+
+- En la tarea hablan de niños que recibieron y recibirán la vacuna, por lo que a la hora de ingresar 
+el carné de identidad, solo se podrá poner años del 2007 hasta el 2025 (asumiendo que 
+a los 18 ya no eres considerado un niño)
