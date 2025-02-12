@@ -4,6 +4,7 @@
 #include <Logica/Datos.h>
 #include <Interfaz/Interfaz.h>
 
+//Menu encargador de manejar la forma en que se introducen los datos
 void menuDatos(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]){
     int opcion;
     bool completed = false;
@@ -14,8 +15,11 @@ void menuDatos(struct provincia provincias[], int cantProvincias, bool provincia
         printf("2. Cargar datos de las provincias autom\240ticamente\n");
         printf("3. Salir\n");
         printf("Ingrese una opci\242n: ");
-        scanf("%d", &opcion);
-        getchar();
+
+        while(scanf("%d", &opcion) == 0 || opcion > 3 || opcion < 1){
+            printf("Error: Ingrese una Opci\242n V\240lida: ");
+            fflush(stdin);
+        }
 
         switch (opcion) {
         case 1:
@@ -40,10 +44,12 @@ void menuDatos(struct provincia provincias[], int cantProvincias, bool provincia
 
         default:
             printf("Opci\242n inv\240lida. Intente de nuevo.\n");
+
         }
     } while (opcion != 3 && completed == false);
 }
 
+//Menu encargado de mostrar los reportes
 void menuReportes(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]){
     int opcion;
     do {
@@ -56,8 +62,11 @@ void menuReportes(struct provincia provincias[], int cantProvincias, bool provin
         printf("5. Verificar si provincia tiene al menos un ni\244o al\202rgico nacido en 2015\n");
         printf("6. Salir\n");
         printf("Ingrese una opci\242n: ");
-        scanf("%d", &opcion);
-        getchar();
+
+        while(scanf("%d", &opcion) == 0 || opcion > 6 || opcion < 1){
+            printf("Error: Ingrese una Opci\242n V\240lida: ");
+            fflush(stdin);
+        }
 
         switch (opcion) {
         case 1:
@@ -86,6 +95,7 @@ void menuReportes(struct provincia provincias[], int cantProvincias, bool provin
     } while (opcion != 6);
 }
 
+//Menu principa del programa
 void menu(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]){
     int opcion;
     do {
@@ -95,8 +105,11 @@ void menu(struct provincia provincias[], int cantProvincias, bool provinciasVacu
         printf("2. Reportes\n");
         printf("3. Salir\n");
         printf("Ingrese una opci\242n: ");
-        scanf("%d", &opcion);
-        getchar();
+
+        while(scanf("%d", &opcion) == 0 || opcion > 3 || opcion < 1){
+            printf("Error: Ingrese una Opci\242n V\240lida: ");
+            fflush(stdin);
+        }
 
         switch (opcion) {
         case 1:

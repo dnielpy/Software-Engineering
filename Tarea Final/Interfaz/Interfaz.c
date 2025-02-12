@@ -88,12 +88,12 @@ void ingresarDatosManualmente(Provincia provincias[], int cantidadProvincias) {
 }
 
 
-//Ingresar Datos Automaticamente
+//Ingresar Datos Automáticamente
 void ingresarDatosAutomaticamente(Provincia provincias[], int cantidadProvincias){
     system("cls");
     inicializarDatosAutomaticamente(provincias, cantidadProvincias);
     printf("Provincias inicializadas correctamente.\n");
-    system("pause");
+
 }
 
 
@@ -119,7 +119,7 @@ void reporteAlergicos(Provincia provincias[], int cantidadProvincias){
     system("pause");
 }
 
-
+//Reporte de vacunados vs los que se van a vacunar
 void reporteVacunadosVsVacunar(Provincia provincias[], int cantidadProvincias){
     system("cls");
     printf("-- Reporte de superar\240 la cantidad de ni\244os a vacunar con respecto a la campa\244a anterior --\n\n");
@@ -140,7 +140,7 @@ void reporteVacunadosVsVacunar(Provincia provincias[], int cantidadProvincias){
     system("pause");
 }
 
-//Reporte provincias que vacunaran mas
+//Reporte provincias que vacunarán mas
 void reporteProvinciasMasVacunaran(Provincia provincias[], int cantidadProvincias, bool provinciasVacunaranMas[]){
     system("cls");
     inicializarProvinciasConMayorVacunacion(provincias, cantidadProvincias, provinciasVacunaranMas);
@@ -156,15 +156,16 @@ void reporteProvinciasMasVacunaran(Provincia provincias[], int cantidadProvincia
     system("pause");
 }
 
-//Reporte de alergicos del 2015
+//Reporte de alérgicos del 2015
 void reporteAlergico2015(Provincia provincias[], int cantidadProvincias){
     system("cls");
     int provincia;
 
-    printf("\nEscriba a continuaci\242n el \241ndice de la provincia: ");
     for(provincia = 0; provincia < cantidadProvincias; provincia++){
         printf("\n%d - %s", provincia+1, provincias[provincia].nombre);
     }
+
+    printf("\nEscriba a continuaci\242n el \241ndice de la provincia: ");
 
     while(scanf("%d", &provincia) == 0 || provincia < 0 || provincia > cantidadProvincias){
         printf("ERROR: Escriba una opci\242n v\240lida.");
@@ -182,7 +183,6 @@ void reporteAlergico2015(Provincia provincias[], int cantidadProvincias){
         system("cls");
         printf("La provincia %s no tiene ning\243n al\202rgico nacido en el 2015\n\n", provincias[provincia].nombre);
     }
-    system("pause");
 }
 
 
