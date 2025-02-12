@@ -5,4 +5,6 @@
 #include <time.h>
 
 
-void menu(struct provincia provincias[], int cantProvincias);
+void menu(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]);
+void menuReportes(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]);
+void menuDatos(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]);

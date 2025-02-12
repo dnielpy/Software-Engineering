@@ -9,9 +9,10 @@ int main() {
     int cantidadProvincias = 15;
     Provincia provincias[cantidadProvincias];
     bool provinciasVacunaranMas[cantidadProvincias];
-    bool provinciasConMayorVacunacion[cantidadProvincias];
 
-    menu(provincias, cantidadProvincias);
+    inicializar(provincias, cantidadProvincias);
+
+    menu(provincias, cantidadProvincias, provinciasVacunaranMas);
 
     return 0;
 }

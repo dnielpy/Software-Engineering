@@ -4,7 +4,7 @@
 #include <Logica/Datos.h>
 #include <time.h>
 
-void inicializarNombres(struct provincia provincias[]){
+void inicializar(struct provincia provincias[], int cantProvincias){
     strcpy(provincias[0].nombre, "Pinar del Rio");
     strcpy(provincias[1].nombre, "Artemisa");
     strcpy(provincias[2].nombre, "La Habana");
@@ -21,10 +21,24 @@ void inicializarNombres(struct provincia provincias[]){
     strcpy(provincias[13].nombre, "Santiago de Cuba");
     strcpy(provincias[14].nombre, "Guantanamo");
 
+    int provincia;
+    int j;
+    int k;
+    for(provincia = 0; provincia < cantProvincias; provincia++){
+        provincias[provincia].vacunados = 0;
+        provincias[provincia].vacunar = 0;
+        provincias[provincia].cantidadDeAlergicos = 0;
+        for(j = 0; j < 1000; j++){
+            for(k = 0; k < 11; k++){
+                provincias[provincia].alergicosID[j][k] = '\0';
+            }
+        }
+    }
 }
 
+
 void generarID(char id[11]) {
-    int year = 2007 + (rand() % 4);  //Si es niño nacio en 2007 como mucho
+    int year = 2007 + (rand() % 4);
     int month = 1 + (rand() % 12);
     int day = 1 + (rand() % 28);
 
@@ -153,6 +167,18 @@ bool chequearIdValido(char id[]){
     return response;
 }
 
+bool buscarAlergico2015(Provincia provincias[], int provincia, char idResult[11]) {
+    bool result = false;
+    int id;
+
+    for (id = 0; id < provincias[provincia].cantidadDeAlergicos && !result; id++) {
+        if (strncmp(provincias[provincia].alergicosID[id], "15", 2) == 0) {
+            strcpy(idResult, provincias[provincia].alergicosID[id]);
+            result = true;
+        }
+    }
+    return result;
+}
 
 
 
