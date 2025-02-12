@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <Logica/Datos.h>
 
-void inicializar(struct provincia provincias[]);
+void inicializar(struct provincia provincias[], int cantProvincias);
 void generarID(char id[11]);
 void inicializarDatosAutomaticamente(struct provincia provincias[], int cantProvincias);
 int totalVacunar(Provincia provincias[], int cantProvincias);

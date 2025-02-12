@@ -19,13 +19,25 @@ void menuDatos(struct provincia provincias[], int cantProvincias, bool provincia
 
         switch (opcion) {
         case 1:
-            ingresarDatosManualmente(provincias, cantProvincias);
-            completed = true;
+            if(completed == false){
+                ingresarDatosManualmente(provincias, cantProvincias);
+            }
+            else{
+                printf("Los Datos Ya Han Sido Cargados");
+            }
             break;
         case 2:
-            ingresarDatosAutomaticamente(provincias, cantProvincias);
-            completed = true;
+            if(completed == false){
+                ingresarDatosAutomaticamente(provincias, cantProvincias);
+                completed = true;
+            }
+            else{
+                printf("Los Datos Ya Han Sido Inicializados");
+            }
             break;
+        case 3:
+            break;
+
         default:
             printf("Opci\242n inv\240lida. Intente de nuevo.\n");
         }
@@ -65,6 +77,9 @@ void menuReportes(struct provincia provincias[], int cantProvincias, bool provin
             reporteAlergico2015(provincias, cantProvincias);
             system("pause");
             break;
+
+        case 6:
+            break;
         default:
             printf("Opci\242n inv\240lida. Intente de nuevo.\n");
         }
@@ -73,31 +88,29 @@ void menuReportes(struct provincia provincias[], int cantProvincias, bool provin
 
 void menu(struct provincia provincias[], int cantProvincias, bool provinciasVacunaranMas[]){
     int opcion;
-    bool datosCargados = false;
     do {
         system("cls");
         printf("##::::'##:'########:'##::: ##:'##::::'##:\n###::'###: ##.....:: ###:: ##: ##:::: ##:\n####'####: ##::::::: ####: ##: ##:::: ##:\n## ### ##: ######::: ## ## ##: ##:::: ##:\n##. #: ##: ##...:::: ##. ####: ##:::: ##:\n##:.:: ##: ##::::::: ##:. ###: ##:::: ##:\n##:::: ##: ########: ##::. ##:. #######::");
         printf("\n\n1. Cargar datos\n");
         printf("2. Reportes\n");
+        printf("3. Salir\n");
         printf("Ingrese una opci\242n: ");
         scanf("%d", &opcion);
         getchar();
 
         switch (opcion) {
         case 1:
-            if(datosCargados == false){
-                menuDatos(provincias, cantProvincias, provinciasVacunaranMas);
-                datosCargados = true;
-            }
-            else{
-                system("cls");
-                printf("Los datos ya han sido cargados.\n");
-                system("pause");
-            }
+            menuDatos(provincias, cantProvincias, provinciasVacunaranMas);
+            system("pause");
             break;
+
         case 2:
             menuReportes(provincias, cantProvincias, provinciasVacunaranMas);
             break;
+
+        case 3:
+            break;
+
         default:
             printf("Opci\242n inv\240lida. Intente de nuevo.\n");
         }
